@@ -1,0 +1,7 @@
+Olika menyer:
+Main,
+Edit,
+Search,
+Sort,
+Create,
+Save/Load
