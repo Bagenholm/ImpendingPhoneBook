@@ -1,7 +1,19 @@
-Olika menyer:
-Main,
-Edit,
-Search,
-Sort,
-Create,
-Save/Load
+Jenkins server + domän?
+Save
+Load
+Paket och klassstruktur
+Menu-Initializer
+Git Repo
+Sök
+Lägg till kontakt
+Ta bort
+Edit
+JavaFX
+Skriva user stories
+Bild --> Ascii
+Birthday notification.
+Input-säker
+Exportera
+Export individual contact
+Load and add
+Merge contacts
