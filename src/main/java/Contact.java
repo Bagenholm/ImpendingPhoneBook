@@ -9,4 +9,16 @@ public class Contact implements Serializable {
     private String note;
     private String email;
 
+    public Contact(String name, int phoneNumber, String address, int birthYear, String note, String email) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        BirthYear = birthYear;
+        this.note = note;
+        this.email = email;
+    }
+
+    public Contact() {
+    }
+    
 }
