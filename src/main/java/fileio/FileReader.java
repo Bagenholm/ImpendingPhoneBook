@@ -21,7 +21,6 @@ public class FileReader {
         }
 
         String path = System.getProperty("user.home")
-                + File.separator + "Documents"
                 + File.separator + fileName + ".json";
         File file = new File(path);
 

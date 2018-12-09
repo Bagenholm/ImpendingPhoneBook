@@ -24,7 +24,6 @@ public class FileWriter {
         }
 
         String path = System.getProperty("user.home")
-                + File.separator + "Documents"
                 + File.separator + fileName + ".json";
 
         File file = new File(path);
@@ -37,7 +36,6 @@ public class FileWriter {
                 System.out.println(file.getName() + " exists. For your convenience we will save the file as temp.json instead");
 
                 String altPath = System.getProperty("user.home")
-                        + File.separator + "Documents"
                         + File.separator + "temp.json";
 
                 mapper.writeValue(new File(altPath), contactBook);
