@@ -22,7 +22,7 @@ public class TestFileWriter {
         contactBook.getContactList().add(new Contact("0762221245", "Sven", "svennyboy@gmail.com", LocalDate.of(1987,12,06)));
         FileWriter.writeToJson("1st-contact-book", contactBook);
         ContactBook emptyContactBook = new ContactBook();
-        emptyContactBook = FileReader.readFromJson("1st contact-book");
+        emptyContactBook = FileReader.readFromJson("1st-contact-book");
         assertEquals(contactBook, emptyContactBook);
 
     }
