@@ -5,9 +5,16 @@ package menu;
 //ContactFinder returnerar Contact? Ska ContactFinder ta parametrar?
 //Contact-variabel birthYear kanske ska vara birthDay istället? Och inte lagra som en int utan en kalender?
 
+import data.Contact;
+import fileio.FileReader;
+import fileio.FileWriter;
+import util.Handler;
+
 public class MenuInitializer {
 
+    Handler handler;
     Contact c; //TODO: C=searched contact?
+
 
     Menu mainMenu = new Menu();
     Menu createMenu = new Menu();
@@ -20,9 +27,9 @@ public class MenuInitializer {
     public void initalizeMenus() {
 
         //Main Menu
-        mainMenu.add("Search for contact.", searchMenu.run());
-        mainMenu.add("Create contact.", createMenu.run());
-        mainMenu.add("Edit contact.", editMenu.run());
+        mainMenu.add("Search for contact.", () -> searchMenu.run());
+        mainMenu.add("Create contact.", () -> createMenu.run());
+        mainMenu.add("Edit contact.", () -> editMenu.run());
         mainMenu.add("Save.", () -> saveMenu.run());
         mainMenu.add("Load.", () -> loadMenu.run());
         mainMenu.add("Quit.", () -> quitMenu.run());
@@ -34,38 +41,38 @@ public class MenuInitializer {
 
         //Save Menu
         saveMenu.add("Save to existing file.", () -> handler.save());
-        saveMenu.add("Save to new file.", handler.saveNew() );
-        saveMenu.add("Back to main menu.", mainMenu.run());
+        saveMenu.add("Save to new file.", () -> handler.saveNew());
+        saveMenu.add("Back to main menu.", () -> mainMenu.run());
 
 
         //Load Menu
         loadMenu.add("Load from file.", () -> handler.load());
-        loadMenu.add("Back to main menu.", mainMenu.run());
+        loadMenu.add("Back to main menu.", () -> mainMenu.run());
 
 
-        //Search Menu
+        /*Search Menu TBI TODO: Create contact finder with matching methods - BASSEBOY!?
         searchMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
         searchMenu.add("Search by phone number", () -> c = handler.contactFinder.searchByPhoneNumber());
         searchMenu.add("Search by email", () -> c = handler.contactFinder.searchByEmail());
         searchMenu.add("Search by birthday", () -> c = handler.contactFinder.searchByBirthYear());
         searchMenu.add("Search by note.", () -> c = handler.contactFinder.searchByNote());
         searchMenu.add("Search by any / Free search", () -> c = handler.contactFinder.searcyByAny());
-        searchMenu.add("Back to main menu.", mainMenu.run());
+        searchMenu.add("Back to main menu.", () -> mainMenu.run()); */
 
 
         //Edit Menu
-        editMenu.add("Back to main menu.", mainMenu.run());
         editMenu.add("Edit contact name.", () -> c.setName(handler.input.verifyString())); //TODO: C=searched contact?
-        editMenu.add("Edit contact phone number.", () -> c.setPhoneNumber(handler.input.verifyInt()));
-        editMenu.add("Edit contact adress.", () -> c.setAdress(handler.input.verifyString));
-        editMenu.add("Edit contact email.", () -> c.setEmail(handler.input.verifyString));
-        editMenu.add("Edit contact note.", () -> c.setNote(handler.input.verifyString));
-        editMenu.add("Edit contact birthday.", () -> c.setBirthYear(handler.input.verifyInt));
+        editMenu.add("Edit contact phone number.", () -> c.setNumber(handler.input.verifyString()));
+        editMenu.add("Edit contact adress.", () -> c.setAdress(handler.input.verifyString()));
+        editMenu.add("Edit contact email.", () -> c.setEmail(handler.input.verifyString()));
+        editMenu.add("Edit contact note.", () -> c.setNote(handler.input.verifyString()));
+       // editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyInt)); //TODO: Not int. Verify birthdate?
+
 
 
         //Quit Menu
-        quitMenu.add("Back to main menu.", mainMenu.run());
-        quitMenu.add("Save and quit.", () -> {handler.save(); System.exit(0);});
+        quitMenu.add("Back to main menu.", () -> mainMenu.run());
+        quitMenu.add("Save and quit.", () -> { handler.save(); System.exit(0);});
         quitMenu.add("Quit without saving.", () -> System.exit(0));
 
     }

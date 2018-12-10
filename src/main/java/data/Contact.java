@@ -19,15 +19,20 @@ public class Contact {
     String number;
     String name;
     String email;
+    String note;
+    String adress;
+
+
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     LocalDate birthDate;
-
-    public Contact(String number, String name, String email, LocalDate birthDate) {
+    public Contact(String number, String name, String email, LocalDate birthDate, String note, String adress) {
         this.number = number;
         this.name = name;
         this.email = email;
         this.birthDate = birthDate;
+        this.note = note;
+        this.adress = adress;
     }
 
     public Contact() {
@@ -35,6 +40,14 @@ public class Contact {
 
     public String getNumber() {
         return number;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public void setNumber(String number) {
@@ -65,12 +78,22 @@ public class Contact {
         this.birthDate = birthDate;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
                 "number='" + number + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", note='" + note + '\'' +
+                ", adress='" + adress + '\'' +
                 ", birthDate=" + birthDate +
                 '}';
     }
@@ -80,14 +103,16 @@ public class Contact {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return Objects.equals(number, contact.number) &&
-                Objects.equals(name, contact.name) &&
-                Objects.equals(email, contact.email) &&
-                Objects.equals(birthDate, contact.birthDate);
+        return Objects.equals(getNumber(), contact.getNumber()) &&
+                Objects.equals(getName(), contact.getName()) &&
+                Objects.equals(getEmail(), contact.getEmail()) &&
+                Objects.equals(getNote(), contact.getNote()) &&
+                Objects.equals(getAdress(), contact.getAdress()) &&
+                Objects.equals(getBirthDate(), contact.getBirthDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number, name, email, birthDate);
+        return Objects.hash(getNumber(), getName(), getEmail(), getNote(), getAdress(), getBirthDate());
     }
 }

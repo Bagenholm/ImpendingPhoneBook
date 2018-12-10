@@ -1,9 +1,10 @@
 package menu;
 
-import java.util.ArrayList;
-import java.util.logging.Handler;
+import util.Handler;
 
-public class Menu {
+import java.util.ArrayList;
+
+public class Menu implements Selectable {
 
     Handler handler;
 
@@ -29,7 +30,7 @@ public class Menu {
 
 
     public void run(){
-        menuOptions.get(choice -1).execute();
+        menuOptions.get(choice() -1).execute();
     }
 
     public void runEntireMenu(){
@@ -38,4 +39,8 @@ public class Menu {
         }
     }
 
+    @Override
+    public void execute() {
+
+    }
 }

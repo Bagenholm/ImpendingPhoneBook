@@ -20,7 +20,7 @@ public class TestFileWriter {
     @Test
     void fileWriteReturnsNewFileWithSameInformation() {
         ContactBook contactBook = new ContactBook();
-        contactBook.getContactList().add(new Contact("0762221245", "Sven", "svennyboy@gmail.com", LocalDate.of(1987,12,06)));
+        contactBook.getContactList().add(new Contact("0762221245", "Sven", "svennyboy@gmail.com", LocalDate.of(1987,12,06), "My note says hi", "Sysslomansväggrenen 8"));
         StringBuilder out = new StringBuilder();
         out.append("test-ipb-").append(new SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(new Date()));
         FileWriter.writeToJson(out.toString(), contactBook);
