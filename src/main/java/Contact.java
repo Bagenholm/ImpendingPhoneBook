@@ -3,17 +3,17 @@ import java.io.Serializable;
 public class Contact implements Serializable {
 
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String address;
-    private int BirthYear;
+    private int birthYear;
     private String note;
     private String email;
 
-    public Contact(String name, int phoneNumber, String address, int birthYear, String note, String email) {
+    public Contact(String name, String phoneNumber, String address, int birthYear, String note, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        BirthYear = birthYear;
+        this.birthYear = birthYear;
         this.note = note;
         this.email = email;
     }
@@ -29,11 +29,11 @@ public class Contact implements Serializable {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -46,11 +46,11 @@ public class Contact implements Serializable {
     }
 
     public int getBirthYear() {
-        return BirthYear;
+        return birthYear;
     }
 
     public void setBirthYear(int birthYear) {
-        BirthYear = birthYear;
+        this.birthYear = birthYear;
     }
 
     public String getNote() {
@@ -67,5 +67,13 @@ public class Contact implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Contact[" +
+                " name=" + name + ", phoneNumber=" + phoneNumber +
+                ", address=" + address + ", birthYear=" + birthYear +
+                ", note=" + note + ", email=" + email + "]";
     }
 }
