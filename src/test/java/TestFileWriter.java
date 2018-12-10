@@ -16,7 +16,6 @@ public class TestFileWriter {
 
     /**
      * Needs equal and hashcode implementation in Contact and contactBook
-     * this test is not compatible with docker, need to figure out again. Possibly do with string instead.
      */
     @Test
     void fileWriteReturnsNewFileWithSameInformation() {
