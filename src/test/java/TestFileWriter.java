@@ -32,7 +32,7 @@ public class TestFileWriter {
     @Test
     void throwsExceptionIfStringIsNull() {
         ContactBook contactBook = new ContactBook();
-        contactBook.getContactList().add(new Contact("0762221245", "Sven", "svennyboy@gmail.com", LocalDate.of(1987,12,06)));
+        contactBook.getContactList().add(new Contact("0762221245", "Sven", "svennyboy@gmail.com", LocalDate.of(1987,12,06), "hej", "vägen 1"));
 
         assertThrows(IllegalArgumentException.class, () -> FileWriter.writeToJson(null, contactBook) );
 
