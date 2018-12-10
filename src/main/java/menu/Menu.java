@@ -32,4 +32,10 @@ public class Menu {
         menuOptions.get(choice -1).execute();
     }
 
+    public void runEntireMenu(){
+        for (Selectable s : menuOptions ) {
+            s.execute();
+        }
+    }
+
 }
