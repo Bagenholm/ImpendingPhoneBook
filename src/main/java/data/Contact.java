@@ -20,7 +20,8 @@ public class Contact {
     private String name;
     private String email;
     private String note;
-    private String address;    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private String address;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     LocalDate birthDate;
     public Contact(String name, String number, String address, LocalDate birthDate, String note, String email) {
@@ -81,6 +82,11 @@ public class Contact {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String info(){
+        return getBirthDate() + " " + getEmail() + " " + getName() + " " + getNote() + " "
+                + getAddress() + " " + getNumber();
     }
 
     @Override
