@@ -38,7 +38,8 @@ public class MenuInitializer {
         createMenu.add("Back to main menu.", () -> mainMenu.run());
 
         //Creates contact and adds it to contact list
-        createMenu.add("Make new contact.", () -> { c = new Contact(); handler.contactBook.getContactList().add(c); editMenu.runEntireMenu(); } ); //TODO: Add chosen contact to edit menu
+        createMenu.add("Make new contact.", () -> { c = new Contact(); handler.contactBook.getContactList().add(c);
+        editMenu.runEntireMenu(); } ); //TODO: Add chosen contact to edit menu
 
 
         //Save Menu
