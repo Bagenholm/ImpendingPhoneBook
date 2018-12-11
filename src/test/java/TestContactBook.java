@@ -9,4 +9,4 @@ class TestContactBook {
     void testThatContactBookThrowsExceptionWhenInputtingNull() {
         assertThrows(IllegalArgumentException.class, () -> new ContactBook(null));
     }
-}
+}  

@@ -1,5 +1,6 @@
 package util;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class InputManager {
@@ -40,4 +41,34 @@ public class InputManager {
     public String verifyString() {
         return sc.nextLine();
     }
+
+    public LocalDate verifyDate() {
+        String year, month, day;
+
+        String input = sc.nextLine();
+
+        if (input.length() == 8 && input.matches("[0-9]{8}")) {
+            year = input.substring(0, 4);
+            month = input.substring(4, 6);
+            day = input.substring(6, 8);
+            return LocalDate.parse(year + month + day);
+        } else if (input.length() == 6 && input.matches("[0-9]{6}")) {
+            if (Integer.parseInt(input.substring(0, 2)) > 19 ) {
+                year = "19"+input.substring(0, 2);
+                month = input.substring(2, 4);
+                day = input.substring(4, 6);
+                return LocalDate.parse(month + year + day);
+            } else {
+                year = "20"+input.substring(0, 2);
+                month = input.substring(2, 4);
+                day = input.substring(4, 6);
+                return LocalDate.parse(month + year + day);
+            }
+        }
+        else {
+            System.out.println("Please enter date in the format YYYYMMDD");
+            return verifyDate();
+        }
+    }
+
 }
