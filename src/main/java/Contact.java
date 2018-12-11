@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Contact implements Serializable {
 
@@ -75,5 +76,23 @@ public class Contact implements Serializable {
                 " name=" + name + ", phoneNumber=" + phoneNumber +
                 ", address=" + address + ", birthYear=" + birthYear +
                 ", note=" + note + ", email=" + email + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return birthYear == contact.birthYear &&
+                name.equals(contact.name) &&
+                phoneNumber.equals(contact.phoneNumber) &&
+                address.equals(contact.address) &&
+                note.equals(contact.note) &&
+                email.equals(contact.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phoneNumber, address, birthYear, note, email);
     }
 }

@@ -78,4 +78,20 @@ public class TestContact {
         c.setEmail("test@gmail.com");
         assertEquals("test@gmail.com", c.getEmail());
     }
+
+    @Test
+    void TestHashCode() {
+        Contact x = new Contact();
+        Contact y = new Contact();
+        assertTrue(x.hashCode() == y.hashCode());
+    }
+
+    @Test
+    void TestEquals() {
+        assertTrue(new Contact("Oskar", "0737123456",
+                "Utsiktsvägen 5", 1998, "test", "test@iths.se").equals
+                (new Contact("Oskar", "0737123456",
+                "Utsiktsvägen 5", 1998, "test", "test@iths.se")));
+
+    }
 }
