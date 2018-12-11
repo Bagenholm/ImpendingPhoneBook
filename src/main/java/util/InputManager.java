@@ -50,6 +50,10 @@ public class InputManager {
         return takeInput();
     }
 
+
+    /** Takes a string in the format YYYYMMDD or YYMMDD and converts it to LocalDate, through verifyDateFormat().
+     * If YY in YYMMDD is lower than 19, makes it 20YY, else 19YY. */
+
     public LocalDate verifyDate() {
         System.out.println("Please enter date in the format YYYYMMDD");
         String input = takeInput();
