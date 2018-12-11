@@ -6,8 +6,6 @@ package menu;
 //Contact-variabel birthYear kanske ska vara birthDay istället? Och inte lagra som en int utan en kalender?
 
 import data.Contact;
-import fileio.FileReader;
-import fileio.FileWriter;
 import util.Handler;
 
 public class MenuInitializer {
@@ -20,6 +18,7 @@ public class MenuInitializer {
     Menu createMenu = new Menu();
     Menu saveMenu = new Menu();
     Menu loadMenu = new Menu();
+    Menu removeMenu = new Menu();
     Menu searchMenu = new Menu();
     Menu editMenu = new Menu();
     Menu quitMenu = new Menu();
@@ -59,11 +58,17 @@ public class MenuInitializer {
         searchMenu.add("Search by any / Free search", () -> c = handler.contactFinder.searcyByAny());
         searchMenu.add("Back to main menu.", () -> mainMenu.run()); */
 
+        /*
+        //Remove Menu
+        removeMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
+        removeMenu.add("Removing the person", () -> handler.contactBook.getContactList().remove(c));
+        removeMenu.add("Back to main menu.", () -> mainMenu.run());
+        */
 
         //Edit Menu
         editMenu.add("Edit contact name.", () -> c.setName(handler.input.verifyString())); //TODO: C=searched contact?
         editMenu.add("Edit contact phone number.", () -> c.setNumber(handler.input.verifyString()));
-        editMenu.add("Edit contact adress.", () -> c.setAdress(handler.input.verifyString()));
+        editMenu.add("Edit contact adress.", () -> c.setAddress(handler.input.verifyString()));
         editMenu.add("Edit contact email.", () -> c.setEmail(handler.input.verifyString()));
         editMenu.add("Edit contact note.", () -> c.setNote(handler.input.verifyString()));
        // editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyInt)); //TODO: Not int. Verify birthdate?
@@ -72,7 +77,7 @@ public class MenuInitializer {
 
         //Quit Menu
         quitMenu.add("Back to main menu.", () -> mainMenu.run());
-        quitMenu.add("Save and quit.", () -> { handler.save(); System.exit(0);});
+         quitMenu.add("Save and quit.", () -> { handler.save(); System.exit(0);});
         quitMenu.add("Quit without saving.", () -> System.exit(0));
 
     }

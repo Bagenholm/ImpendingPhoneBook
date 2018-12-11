@@ -16,23 +16,20 @@ import java.util.Objects;
 
 public class Contact {
 
-    String number;
-    String name;
-    String email;
-    String note;
-    String adress;
-
-
-    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private String number;
+    private String name;
+    private String email;
+    private String note;
+    private String address;    @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     LocalDate birthDate;
-    public Contact(String number, String name, String email, LocalDate birthDate, String note, String adress) {
+    public Contact(String name, String number, String address, LocalDate birthDate, String note, String email) {
         this.number = number;
         this.name = name;
         this.email = email;
         this.birthDate = birthDate;
         this.note = note;
-        this.adress = adress;
+        this.address = address;
     }
 
     public Contact() {
@@ -42,12 +39,12 @@ public class Contact {
         return number;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setNumber(String number) {
@@ -88,14 +85,10 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "number='" + number + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", note='" + note + '\'' +
-                ", adress='" + adress + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
+        return "Contact[" +
+                " name=" + name + ", phoneNumber=" + number +
+                ", address=" + address + ", birthDate=" + birthDate +
+                ", note=" + note + ", email=" + email + "]";
     }
 
     @Override
@@ -107,12 +100,12 @@ public class Contact {
                 Objects.equals(getName(), contact.getName()) &&
                 Objects.equals(getEmail(), contact.getEmail()) &&
                 Objects.equals(getNote(), contact.getNote()) &&
-                Objects.equals(getAdress(), contact.getAdress()) &&
+                Objects.equals(getAddress(), contact.getAddress()) &&
                 Objects.equals(getBirthDate(), contact.getBirthDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNumber(), getName(), getEmail(), getNote(), getAdress(), getBirthDate());
+        return Objects.hash(getNumber(), getName(), getEmail(), getNote(), getAddress(), getBirthDate());
     }
 }

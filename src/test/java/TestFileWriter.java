@@ -20,7 +20,7 @@ public class TestFileWriter {
     @Test
     void fileWriteReturnsNewFileWithSameInformation() {
         ContactBook contactBook = new ContactBook();
-        contactBook.getContactList().add(new Contact("0762221245", "Sven", "svennyboy@gmail.com", LocalDate.of(1987,12,06), "My note says hi", "Sysslomansväggrenen 8"));
+        contactBook.getContactList().add(new Contact("Sven", "0706875432", "Raka vägen 15", LocalDate.of(1987,12,06), "My note says hi", "svennyboy@gmail.com"));
         StringBuilder out = new StringBuilder();
         out.append("test-ipb-").append(new SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(new Date()));
         FileWriter.writeToJson(out.toString(), contactBook);
@@ -32,7 +32,7 @@ public class TestFileWriter {
     @Test
     void throwsExceptionIfStringIsNull() {
         ContactBook contactBook = new ContactBook();
-        contactBook.getContactList().add(new Contact("0762221245", "Sven", "svennyboy@gmail.com", LocalDate.of(1987,12,06), "hej", "vägen 1"));
+        contactBook.getContactList().add(new Contact("Sven", "0706875432", "Raka vägen 15", LocalDate.of(1987,12,06), "My note says hi", "svennyboy@gmail.com"));
 
         assertThrows(IllegalArgumentException.class, () -> FileWriter.writeToJson(null, contactBook) );
 

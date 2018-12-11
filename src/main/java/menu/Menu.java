@@ -9,7 +9,7 @@ public class Menu implements Selectable {
     Handler handler;
 
     ArrayList<Selectable> menuOptions = new ArrayList<Selectable>();
-    ArrayList<String> menuChoice = new ArrayList<>();
+    ArrayList<String> menuChoice = new ArrayList<String>();
 
     public void add(String s, Selectable selectable) {
         menuChoice.add(s);

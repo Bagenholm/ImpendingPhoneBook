@@ -1,15 +1,18 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import data.Contact;
+
+import java.time.LocalDate;
 
 public class TestContact {
 
     Contact c = new Contact("Oskar", "0737123456",
-            "Utsiktsvägen 5", 1998, "test", "test@iths.se");
+            "Utsiktsvägen 5", LocalDate.of(1998, 8, 16), "test", "test@iths.se");
 
     @Test
     void testToString(){
         String expected =
-                "Contact[ name=Oskar, phoneNumber=0737123456, address=Utsiktsvägen 5, birthYear=1998, note=test, email=test@iths.se]";
+                "Contact[ name=Oskar, phoneNumber=0737123456, address=Utsiktsvägen 5, birthDate=1998-08-16, note=test, email=test@iths.se]";
         assertEquals(expected,c.toString());
     }
 
@@ -26,13 +29,13 @@ public class TestContact {
 
     @Test
     void TestGetPhoneNumber() {
-        assertEquals("0737123456",c.getPhoneNumber());
+        assertEquals("0737123456",c.getNumber());
     }
 
     @Test
     void TestSetPhoneNumber() {
-        c.setPhoneNumber("0756015792");
-        assertEquals("0756015792", c.getPhoneNumber());
+        c.setNumber("0756015792");
+        assertEquals("0756015792", c.getNumber());
     }
 
     @Test
@@ -47,14 +50,14 @@ public class TestContact {
     }
 
     @Test
-    void TestGetBirthYear() {
-        assertEquals(1998, c.getBirthYear());
+    void TestGetBirthDate() {
+        assertEquals("1998-08-16", c.getBirthDate().toString());
     }
 
     @Test
-    void TestSetBirthYear() {
-        c.setBirthYear(1997);
-        assertEquals(1997, c.getBirthYear());
+    void TestSetBirthDate() {
+        c.setBirthDate(LocalDate.of(1997,1,1));
+        assertEquals("1997-01-01", c.getBirthDate().toString());
     }
 
     @Test
@@ -89,9 +92,9 @@ public class TestContact {
     @Test
     void TestEquals() {
         assertTrue(new Contact("Oskar", "0737123456",
-                "Utsiktsvägen 5", 1998, "test", "test@iths.se").equals
+                "Utsiktsvägen 5", LocalDate.of(1998,1,1), "test", "test@iths.se").equals
                 (new Contact("Oskar", "0737123456",
-                "Utsiktsvägen 5", 1998, "test", "test@iths.se")));
+                "Utsiktsvägen 5", LocalDate.of(1998,1,1), "test", "test@iths.se")));
 
     }
 }
