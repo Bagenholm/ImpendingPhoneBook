@@ -7,7 +7,7 @@ import util.Handler;
 import java.io.File;
 import java.io.IOException;
 
-public class FileWriter implements Strategy {
+public class FileWriter {
 
     Handler handler;
 
@@ -60,23 +60,7 @@ public class FileWriter implements Strategy {
 
 
 
-    public void exportTo(File file) {
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.writeValue(FileSelector.chooseJsonFile(), handler.contactBook);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
-    @Override
-    public File execute() {
-        return null;
-    }
 }
 
 

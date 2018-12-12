@@ -1,27 +1,25 @@
 package fileio;
 
-import java.io.File;
-
 public class IOContext {
 
-    private ExportStrategy exportStrategy;
-    private ImportStrategy importStrategy;
+    private IOStrategy importIOStrategy;
+    private IOStrategy exportIOStrategy;
 
-    public void setExportStrategy(ExportStrategy exportStrategy) {
-        this.exportStrategy = exportStrategy;
+    public void setImportIOStrategy(IOStrategy importIOStrategy) {
+        this.importIOStrategy = importIOStrategy;
     }
 
-    public void setImportStrategy(ImportStrategy importStrategy) {
-        this.importStrategy = importStrategy;
+    public void setExportIOStrategy(IOStrategy exportIOStrategy) {
+        this.exportIOStrategy = exportIOStrategy;
     }
 
-    public void exportFile(File file) {
-      //  exportStrategy.exportTo(file);
-
+    public void exportTo() {
+        exportIOStrategy.exportTo();
     }
 
-    public File importStrategy(File file) {
+    public void importFrom() {
 
-     return null;
+        importIOStrategy.importTo();
+
     }
 }

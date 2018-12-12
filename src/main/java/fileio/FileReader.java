@@ -6,7 +6,7 @@ import data.ContactBook;
 import java.io.File;
 import java.io.IOException;
 
-public class FileReader implements Strategy {
+public class FileReader implements IOStrategy {
 
     /**
      * Reads data from a json file and tries to parse it to a contactBook object.
@@ -48,12 +48,15 @@ public class FileReader implements Strategy {
     }
 
 
-    public File importTo() {
-        return null;
+
+
+    @Override
+    public void exportTo() {
+
     }
 
     @Override
-    public File execute() {
-        return null;
+    public void importTo() {
+
     }
 }
