@@ -76,7 +76,7 @@ public class MenuInitializer {
         editMenu.add("Edit contact adress.", () -> c.setAddress(handler.input.verifyString()));
         editMenu.add("Edit contact email.", () -> c.setEmail(handler.input.verifyString()));
         editMenu.add("Edit contact note.", () -> c.setNote(handler.input.verifyString()));
-       // editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyInt)); //TODO: Not int. Verify birthdate?
+        editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyDate()));
 
 
 
