@@ -79,6 +79,11 @@ public class Contact {
         this.note = note;
     }
 
+    public String info(){
+        return getBirthDate() + " " + getEmail() + " " + getName() + " " + getNote() + " "
+                + getAddress() + " " + getNumber();
+    }
+
     @Override
     public String toString() {
         return "Contact[" +
