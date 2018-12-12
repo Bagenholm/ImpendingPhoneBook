@@ -8,6 +8,7 @@ package menu;
 import data.Contact;
 import util.ContactFinder;
 import util.Handler;
+import util.InputManager;
 
 public class MenuInitializer {
 
@@ -61,11 +62,11 @@ public class MenuInitializer {
 
 
         //Edit Menu
-        editMenu.add("Edit contact name.", () -> c.setName(handler.input.verifyString())); //TODO: C=searched contact?
-        editMenu.add("Edit contact phone number.", () -> c.setNumber(handler.input.verifyString()));
-        editMenu.add("Edit contact adress.", () -> c.setAddress(handler.input.verifyString()));
-        editMenu.add("Edit contact email.", () -> c.setEmail(handler.input.verifyString()));
-        editMenu.add("Edit contact note.", () -> c.setNote(handler.input.verifyString()));
+        editMenu.add("Edit contact name.", () -> c.setName(input().verifyString())); //TODO: C=searched contact?
+        editMenu.add("Edit contact phone number.", () -> c.setNumber(input().verifyString()));
+        editMenu.add("Edit contact adress.", () -> c.setAddress(input().verifyString()));
+        editMenu.add("Edit contact email.", () -> c.setEmail(input().verifyString()));
+        editMenu.add("Edit contact note.", () -> c.setNote(input().verifyString()));
        // editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyInt)); //TODO: Not int. Verify birthdate?
 
 
@@ -83,5 +84,9 @@ public class MenuInitializer {
 
     public ContactFinder finder(){
         return handler.contactFinder;
+    }
+
+    public InputManager input(){
+        return handler.input;
     }
 }
