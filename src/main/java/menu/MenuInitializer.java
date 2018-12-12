@@ -49,14 +49,14 @@ public class MenuInitializer {
         loadMenu.add("Back to main menu.", () -> mainMenu.run());
 
 
-        /*Search Menu TBI TODO: Create contact finder with matching methods - BASSEBOY!?
+        /*Search Menu TBI TODO: Create contact finder with matching methods - BASSEBOY!? */
         searchMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
         searchMenu.add("Search by phone number", () -> c = handler.contactFinder.searchByPhoneNumber());
         searchMenu.add("Search by email", () -> c = handler.contactFinder.searchByEmail());
         searchMenu.add("Search by birthday", () -> c = handler.contactFinder.searchByBirthYear());
         searchMenu.add("Search by note.", () -> c = handler.contactFinder.searchByNote());
         searchMenu.add("Search by any / Free search", () -> c = handler.contactFinder.searcyByAny());
-        searchMenu.add("Back to main menu.", () -> mainMenu.run()); */
+        searchMenu.add("Back to main menu.", () -> mainMenu.run());
 
         /*
         //Remove Menu

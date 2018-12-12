@@ -21,6 +21,7 @@ public class Contact {
     private String email;
     private String note;
     private String address;
+    private String image;
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     LocalDate birthDate;
@@ -38,6 +39,14 @@ public class Contact {
 
     public String getNumber() {
         return number;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getAddress() {

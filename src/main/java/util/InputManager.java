@@ -79,6 +79,7 @@ public class InputManager {
                 month = input.substring(2, 4);
                 day = input.substring(4, 6);
                 return LocalDate.parse(year + "-" + month + "-" + day);
+
             }
         } else {
             return verifyDate();
