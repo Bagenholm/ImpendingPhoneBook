@@ -18,7 +18,6 @@ public class MenuInitializer {
     Menu createMenu = new Menu();
     Menu saveMenu = new Menu();
     Menu loadMenu = new Menu();
-    Menu addMenu = new Menu();
     Menu removeMenu = new Menu();
     Menu searchMenu = new Menu();
     Menu editMenu = new Menu();
