@@ -6,7 +6,9 @@ package menu;
 //Contact-variabel birthYear kanske ska vara birthDay istället? Och inte lagra som en int utan en kalender?
 
 import data.Contact;
+import util.ContactFinder;
 import util.Handler;
+import util.InputManager;
 
 public class MenuInitializer {
 
@@ -49,29 +51,23 @@ public class MenuInitializer {
         loadMenu.add("Back to main menu.", () -> mainMenu.run());
 
 
-        /*Search Menu TBI TODO: Create contact finder with matching methods - BASSEBOY!? */
-        searchMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
-        searchMenu.add("Search by phone number", () -> c = handler.contactFinder.searchByPhoneNumber());
-        searchMenu.add("Search by email", () -> c = handler.contactFinder.searchByEmail());
-        searchMenu.add("Search by birthday", () -> c = handler.contactFinder.searchByBirthYear());
-        searchMenu.add("Search by note.", () -> c = handler.contactFinder.searchByNote());
-        searchMenu.add("Search by any / Free search", () -> c = handler.contactFinder.searcyByAny());
+        //Search Menu
+        searchMenu.add("Search by name.", () -> c = finder().selectContact(finder().searchByName(verifyString())));
+        searchMenu.add("Search by phone number", () -> c = finder().selectContact(finder().searchByPhoneNumber(verifyString())));
+        searchMenu.add("Search by email", () -> c = finder().selectContact(finder().searchByEmail(verifyString())));
+        searchMenu.add("Search by birthday", () -> c = finder().selectContact(finder().searchByBirthDate(verifyString())));
+        searchMenu.add("Search by note.", () -> c = finder().selectContact(finder().searchByNote(verifyString())));
+        searchMenu.add("Search by any / Free search", () -> c = finder().selectContact(finder().searchByAny(verifyString())));
         searchMenu.add("Back to main menu.", () -> mainMenu.run());
 
-        /*
-        //Remove Menu
-        removeMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
-        removeMenu.add("Removing the person", () -> handler.contactBook.getContactList().remove(c));
-        removeMenu.add("Back to main menu.", () -> mainMenu.run());
-        */
 
         //Edit Menu
-        editMenu.add("Edit contact name.", () -> c.setName(handler.input.verifyString())); //TODO: C=searched contact?
-        editMenu.add("Edit contact phone number.", () -> c.setNumber(handler.input.verifyString()));
-        editMenu.add("Edit contact adress.", () -> c.setAddress(handler.input.verifyString()));
-        editMenu.add("Edit contact email.", () -> c.setEmail(handler.input.verifyString()));
-        editMenu.add("Edit contact note.", () -> c.setNote(handler.input.verifyString()));
-        editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyDate()));
+        editMenu.add("Edit contact name.", () -> c.setName(input().verifyString())); //TODO: C=searched contact?
+        editMenu.add("Edit contact phone number.", () -> c.setNumber(input().verifyString()));
+        editMenu.add("Edit contact adress.", () -> c.setAddress(input().verifyString()));
+        editMenu.add("Edit contact email.", () -> c.setEmail(input().verifyString()));
+        editMenu.add("Edit contact note.", () -> c.setNote(input().verifyString()));
+       // editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyInt)); //TODO: Not int. Verify birthdate?
 
 
 
@@ -80,5 +76,17 @@ public class MenuInitializer {
          quitMenu.add("Save and quit.", () -> { handler.save(); System.exit(0);});
         quitMenu.add("Quit without saving.", () -> System.exit(0));
 
+    }
+
+    public String verifyString(){
+        return handler.input.verifyString();
+    }
+
+    public ContactFinder finder(){
+        return handler.contactFinder;
+    }
+
+    public InputManager input(){
+        return handler.input;
     }
 }

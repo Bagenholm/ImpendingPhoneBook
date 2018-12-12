@@ -8,6 +8,7 @@ public class Handler {
 
     public ContactBook contactBook = new ContactBook();
     public InputManager input = new InputManager();
+    public ContactFinder contactFinder = new ContactFinder(this);
 
     public void save() {
         FileWriter.writeToJson("auto-save", contactBook);
