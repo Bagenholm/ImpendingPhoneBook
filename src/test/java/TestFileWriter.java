@@ -13,10 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestFileWriter {
 
 
-
-    /**
-     * Needs equal and hashcode implementation in Contact and contactBook
-     */
     @Test
     void fileWriteReturnsNewFileWithSameInformation() {
         ContactBook contactBook = new ContactBook();

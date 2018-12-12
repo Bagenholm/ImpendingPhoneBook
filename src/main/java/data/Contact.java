@@ -9,18 +9,14 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 
-/**
- *Class generated to try out contactBook with fileio. Should be replaced with real contact later.
- * Needs deserializer for date to show correctly.
- */
-
 public class Contact {
 
     private String number;
     private String name;
     private String email;
     private String note;
-    private String address;    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private String address;
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     LocalDate birthDate;
     public Contact(String name, String number, String address, LocalDate birthDate, String note, String email) {
