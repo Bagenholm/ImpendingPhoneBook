@@ -7,6 +7,20 @@ import java.util.stream.Collectors;
 
 public class ContactFinder {
 
+    Handler handler;
+
+    public Contact selectContact(List<Contact> list){
+        if(list.size() == 1){
+            return list.get(0);
+        }else{
+            for (int i = 0; i < list.size() ; i++) {
+                System.out.println("[" + i + "]" + list.get(i).toString());
+            }
+            System.out.println("Please choose an index");
+            return list.get(handler.input.verifyInt(0,list.size()));
+        }
+    }
+
     public List<Contact> searchByName(String name, Handler handler){
         List<Contact> searchResults;
        searchResults = handler.contactBook.getContactList().stream()
