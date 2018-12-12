@@ -59,12 +59,6 @@ public class MenuInitializer {
         searchMenu.add("Search by any / Free search", () -> c = finder().selectContact(finder().searchByAny(verifyString())));
         searchMenu.add("Back to main menu.", () -> mainMenu.run());
 
-        /*
-        //Remove Menu
-        removeMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
-        removeMenu.add("Removing the person", () -> handler.contactBook.getContactList().remove(c));
-        removeMenu.add("Back to main menu.", () -> mainMenu.run());
-        */
 
         //Edit Menu
         editMenu.add("Edit contact name.", () -> c.setName(handler.input.verifyString())); //TODO: C=searched contact?
