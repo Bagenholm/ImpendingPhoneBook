@@ -6,6 +6,7 @@ package menu;
 //Contact-variabel birthYear kanske ska vara birthDay istället? Och inte lagra som en int utan en kalender?
 
 import data.Contact;
+import util.ContactFinder;
 import util.Handler;
 
 public class MenuInitializer {
@@ -49,14 +50,14 @@ public class MenuInitializer {
         loadMenu.add("Back to main menu.", () -> mainMenu.run());
 
 
-        /*Search Menu TBI TODO: Create contact finder with matching methods - BASSEBOY!?
-        searchMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
-        searchMenu.add("Search by phone number", () -> c = handler.contactFinder.searchByPhoneNumber());
-        searchMenu.add("Search by email", () -> c = handler.contactFinder.searchByEmail());
-        searchMenu.add("Search by birthday", () -> c = handler.contactFinder.searchByBirthYear());
-        searchMenu.add("Search by note.", () -> c = handler.contactFinder.searchByNote());
-        searchMenu.add("Search by any / Free search", () -> c = handler.contactFinder.searcyByAny());
-        searchMenu.add("Back to main menu.", () -> mainMenu.run()); */
+        //Search Menu
+        searchMenu.add("Search by name.", () -> c = finder().selectContact(finder().searchByName(verifyString())));
+        searchMenu.add("Search by phone number", () -> c = finder().selectContact(finder().searchByPhoneNumber(verifyString())));
+        searchMenu.add("Search by email", () -> c = finder().selectContact(finder().searchByEmail(verifyString())));
+        searchMenu.add("Search by birthday", () -> c = finder().selectContact(finder().searchByBirthDate(verifyString())));
+        searchMenu.add("Search by note.", () -> c = finder().selectContact(finder().searchByNote(verifyString())));
+        searchMenu.add("Search by any / Free search", () -> c = finder().selectContact(finder().searchByAny(verifyString())));
+        searchMenu.add("Back to main menu.", () -> mainMenu.run());
 
         /*
         //Remove Menu
@@ -80,5 +81,13 @@ public class MenuInitializer {
          quitMenu.add("Save and quit.", () -> { handler.save(); System.exit(0);});
         quitMenu.add("Quit without saving.", () -> System.exit(0));
 
+    }
+
+    public String verifyString(){
+        return handler.input.verifyString();
+    }
+
+    public ContactFinder finder(){
+        return handler.contactFinder;
     }
 }
