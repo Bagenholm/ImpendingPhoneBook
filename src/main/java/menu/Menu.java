@@ -34,9 +34,13 @@ public class Menu implements Selectable {
     }
 
     public void runEntireMenu(){
-        for (Selectable s : menuOptions ) {
-            s.execute();
+        for (int i = 0; i <= menuOptions.size() -1 ; i++) {
+            menuOptions.get(i).execute();
         }
+        
+        /*for (Selectable s : menuOptions ) {
+            s.execute();
+        }*/
     }
 
     @Override

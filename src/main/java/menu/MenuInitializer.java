@@ -35,7 +35,10 @@ public class MenuInitializer {
 
         //Create Menu
         createMenu.add("Back to main menu.", () -> mainMenu.run());
-        createMenu.add("Make new contact.", () -> { c = new Contact(); editMenu.runEntireMenu(); } ); //TODO: Add chosen contact to edit menu
+
+        //Creates contact and adds it to contact list
+        createMenu.add("Make new contact.", () -> { c = new Contact(); handler.contactBook.getContactList().add(c);
+        editMenu.runEntireMenu(); } ); //TODO: Add chosen contact to edit menu
 
 
         //Save Menu
@@ -61,9 +64,11 @@ public class MenuInitializer {
         /*
         //Remove Menu
         removeMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
+        removeMenu.add("Search by phone number.", () -> c = handler.contactFinder.searchByEmail());
         removeMenu.add("Removing the person", () -> handler.contactBook.getContactList().remove(c));
         removeMenu.add("Back to main menu.", () -> mainMenu.run());
         */
+
 
         //Edit Menu
         editMenu.add("Edit contact name.", () -> c.setName(handler.input.verifyString())); //TODO: C=searched contact?
