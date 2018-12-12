@@ -2,12 +2,18 @@ package fileio;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.ContactBook;
+import util.Handler;
 
 import java.io.File;
 import java.io.IOException;
 
-public class FileWriter {
+public class FileWriter implements Strategy {
 
+    Handler handler;
+
+    public FileWriter(Handler handler) {
+        this.handler = handler;
+    }
 
     /**
      * Method that first creates a file in the users documents folder:
@@ -53,4 +59,25 @@ public class FileWriter {
     }
 
 
+
+    public void exportTo(File file) {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(FileSelector.chooseJsonFile(), handler.contactBook);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    @Override
+    public File execute() {
+        return null;
+    }
 }
+
+
+
