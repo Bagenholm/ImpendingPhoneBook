@@ -6,7 +6,7 @@ import fileio.FileWriter;
 
 public class Handler {
 
-    public ContactBook contactBook;
+    public ContactBook contactBook = new ContactBook();
     public InputManager input = new InputManager();
 
     public void save() {
