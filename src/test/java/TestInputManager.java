@@ -31,5 +31,4 @@ public class TestInputManager {
         int i = input.verifyIntFormat("5");
         assertEquals(5, i);
     }
-
 }
