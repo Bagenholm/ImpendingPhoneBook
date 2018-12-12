@@ -12,7 +12,7 @@ public class TestContactFinder {
 
     ContactFinder contactFinder = new ContactFinder();
 
-    Contact a1 = new Contact("Alice","0713561271", "Slättåsvägen 34",
+    Contact a1 = new Contact("Alice","0707959697", "Slättåsvägen 34",
             LocalDate.of(1999, 05, 25),"(>^_^)>","testing@gmail.com");
     Contact a2 = new Contact("Alice","0713561272", "Slättåsvägen 44",
             LocalDate.of(1997, 05, 25),"(>^_^)>","testing@hotmail.com");
@@ -29,6 +29,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a1);
         handler.contactBook.getContactList().add(a2);
         handler.contactBook.getContactList().add(a3);
+        handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
         results = contactFinder.searchByName("Alice", handler);
@@ -40,6 +41,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a1);
         handler.contactBook.getContactList().add(a2);
         handler.contactBook.getContactList().add(a3);
+        handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
         results = contactFinder.searchByEmail("testing@gmail.com", handler);
@@ -63,10 +65,11 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a1);
         handler.contactBook.getContactList().add(a2);
         handler.contactBook.getContactList().add(a3);
+        handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
         results = contactFinder.searchByAddress("Slättåsvägen 54", handler);
-        assertTrue(results.size()==1);
+        assertTrue(results.size()==2);
     }
 
     @Test
@@ -77,8 +80,13 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByPhoneNumber("0713561271", handler);
+        results = contactFinder.searchByPhoneNumber("0755113259", handler);
         assertTrue(results.size()==1);
+    }
+
+    @Test
+    void name() {
+        assertEquals("Slättåsvägen 54", a4.getAddress());
     }
 
     @Test

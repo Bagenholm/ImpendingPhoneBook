@@ -24,7 +24,7 @@ public class ContactFinder {
     public List<Contact> searchByAddress(String address, Handler handler){
         List<Contact> searchResults;
         searchResults = handler.contactBook.getContactList().stream()
-                .filter(contact -> contact.getEmail().contains(address)).collect(Collectors.toList());
+                .filter(contact -> contact.getAddress().contains(address)).collect(Collectors.toList());
         return searchResults;
     }
 
@@ -45,7 +45,7 @@ public class ContactFinder {
     public List<Contact> searchByPhoneNumber(String number, Handler handler){
         List<Contact> searchResults;
         searchResults = handler.contactBook.getContactList().stream()
-                .filter(contact -> contact.getEmail().contains(number)).collect(Collectors.toList());
+                .filter(contact -> contact.getNumber().contains(number)).collect(Collectors.toList());
         return searchResults;
     }
 
