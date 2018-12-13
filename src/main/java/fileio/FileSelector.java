@@ -1,68 +1,72 @@
 package fileio;
 
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-
+import li.flor.nativejfilechooser.NativeJFileChooser;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 
 public class FileSelector {
 
     public static File chooseJsonFileSave() {
 
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter jsonExtensionFilter = new FileChooser.ExtensionFilter("json-file", "*.json");
-        return getFileForSave(fileChooser, jsonExtensionFilter);
+        JFileChooser fileChooser = new NativeJFileChooser(System.getProperty("user.home"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Json files", "json"));
+        return getFileForSave(fileChooser);
     }
 
     public static File chooseJsonFileLoad() {
 
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter jsonExtensionFilter = new FileChooser.ExtensionFilter("json-file", "*.json");
-        return getFileForLoad(fileChooser, jsonExtensionFilter);
+        JFileChooser fileChooser = new NativeJFileChooser(System.getProperty("user.home"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Json files", "json"));
+        return getFileForLoad(fileChooser);
     }
 
     public static File chooseImageFileSave() {
 
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter imageExtensionFilter = new FileChooser.ExtensionFilter("images", "*.gif", "*.png", "*.jpg" );
-        return getFileForSave(fileChooser, imageExtensionFilter);
+        //todo: om patrik vill använda
+        return null;
     }
 
     public static File chooseImageFileLoad() {
 
-        FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter imageExtensionFilter = new FileChooser.ExtensionFilter("images", "*.gif", "*.png", "*.jpg" );
-        return getFileForLoad(fileChooser, imageExtensionFilter);
+        //todo: om patrik vill använda
+        return null;
     }
 
-    private static File getFileForSave(FileChooser fileChooser, FileChooser.ExtensionFilter extensionFilter) {
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        fileChooser.setTitle("Choose Location");
-        File initDirectory = new File(System.getProperty("user.home"));
-        fileChooser.setInitialDirectory(initDirectory);
+    private static File getFileForSave(JFileChooser fileChooser) {
 
-        File file = fileChooser.showSaveDialog(new Stage());
-        if (file == null) {
-            System.out.println("no file selected");
+        int result = fileChooser.showSaveDialog(null);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            return file;
+
+        }
+        else {
+            System.out.println("no filename input or cancel pressed");
+            return null;
+
         }
 
-        return file;
-
     }
 
-    private static File getFileForLoad(FileChooser fileChooser, FileChooser.ExtensionFilter extensionFilter) {
-        fileChooser.getExtensionFilters().add(extensionFilter);
-        fileChooser.setTitle("Choose Location");
-        File initDirectory = new File(System.getProperty("user.home"));
-        fileChooser.setInitialDirectory(initDirectory);
+    private static File getFileForLoad(JFileChooser fileChooser){
 
-        File file = fileChooser.showOpenDialog(new Stage());
-        if (file == null) {
-            System.out.println("no file selected");
+            int result = fileChooser.showOpenDialog(null);
+
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File file = fileChooser.getSelectedFile();
+                return file;
+
+            } else {
+                System.out.println("no file selected");
+                return null;
+
+            }
+
         }
 
-        return file;
-
-    }
 
 }
+
+

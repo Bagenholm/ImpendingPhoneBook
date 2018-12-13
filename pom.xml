@@ -49,12 +49,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.9.7</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.zenjava/javafx-maven-plugin -->
-        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
+
         <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>12-ea+4</version>
+            <groupId>li.flor</groupId>
+            <artifactId>native-j-file-chooser</artifactId>
+            <version>1.6.3</version>
         </dependency>
 
 

@@ -10,9 +10,11 @@ import util.Handler;
 import java.time.LocalDate;
 
 
-public class Main extends Application {
+public class Main  {
 
-    public void start (Stage primaryStage) {
+
+
+    public static void main(String[] args) {
 
         System.out.println("hello world");
 
@@ -31,15 +33,6 @@ public class Main extends Application {
         ioContext.importFrom();
 
         System.out.println(handler.contactBook);
-
-
-    }
-
-    public static void main(String[] args) {
-        launch(args);
-
-
-
 
 
 
