@@ -13,6 +13,7 @@ public class FileReader implements IOStrategy {
      * It firstly checks that :
      * @param fileName exists in the users home/documents path.
      * @return new contactBook or null if the file doesn't exist or if an error occurred while parsing.
+     * Since Method in JsonIOStrategy now exists this class will mainly be used for autoload on program boot.
      */
     public static ContactBook readFromJson(String fileName) {
 
@@ -25,7 +26,6 @@ public class FileReader implements IOStrategy {
         File file = new File(path);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.enableDefaultTyping();
         ContactBook deSerializedContactBook = new ContactBook();
 
         if (file.exists()) {

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TestContactFinder {
 
-    ContactFinder contactFinder = new ContactFinder();
+    ContactFinder contactFinder = new ContactFinder(new Handler());
 
     Contact a1 = new Contact("Alice","0707959697", "Slättåsvägen 34",
             LocalDate.of(1999, 05, 25),"(>^_^)>","testing@gmail.com");

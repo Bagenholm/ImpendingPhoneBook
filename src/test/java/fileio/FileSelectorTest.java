@@ -7,11 +7,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileSelectorTest {
 
     @Test
-    void CancelInChooseJsonFile() {
+    void nullInGetFileForSave() {
+
+        assertNull(FileSelector.getFileForLoad(null));
 
     }
 
     @Test
-    void chooseImageFile() {
+    void nullInGetFileForLoad() {
+
+        assertNull(FileSelector.getFileForLoad(null));
     }
 }

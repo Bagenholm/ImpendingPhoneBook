@@ -7,18 +7,33 @@ import static org.junit.jupiter.api.Assertions.*;
 class IOContextTest {
 
     @Test
-    void setImportIOStrategy() {
+    void setImportIOStrategyToNull() {
+
+        IOContext ioContext = new IOContext();
+        assertThrows(IllegalArgumentException.class, () -> ioContext.setImportIOStrategy(null));
     }
 
     @Test
-    void setExportIOStrategy() {
+    void setExportIOStrategyToNull() {
+
+        IOContext ioContext = new IOContext();
+        assertThrows(IllegalArgumentException.class, () -> ioContext.setExportIOStrategy(null));
     }
 
     @Test
-    void exportTo() {
+    void NoExceptionWhenChoosingExportToWithoutSelectingStrategy() {
+
+        IOContext ioContext = new IOContext();
+        ioContext.exportTo();
+        assertFalse(false);
     }
 
     @Test
-    void importFrom() {
+    void NoExceptionWhenChoosingImportToWithoutSelectingStrategy() {
+
+        IOContext ioContext = new IOContext();
+        ioContext.importTo();
+        assertFalse(false);
+
     }
 }

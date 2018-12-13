@@ -7,7 +7,12 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import java.io.IOException;
 import java.time.LocalDate;
 
+/**
+ * This is a supporting class for Jackson to be able to deserialize LocalDates in our contact file
+ */
+
 public class LocalDateDeserializer extends StdDeserializer<LocalDate> {
+
 
     protected LocalDateDeserializer() {
         super(LocalDate.class);

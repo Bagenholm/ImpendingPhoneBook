@@ -16,12 +16,12 @@ public class FileWriter {
     }
 
     /**
-     * Method that first creates a file in the users documents folder:
+     * Method that first creates a file in the users home folder:
      *
      * @param fileName    .json
      * @param contactBook is then serialized to Json data and saved in the file location. (see else clause)
      *                    If file already exists and the name is not auto-save (which can be overriden) the method will save the file as temp.json
-     *                    instead.
+     *                    instead. Since fileChooser methods now exists, this method will mainly be used for autosaves.
      */
     public static void writeToJson(String fileName, ContactBook contactBook) {
 
@@ -34,7 +34,6 @@ public class FileWriter {
 
         File file = new File(path);
         ObjectMapper mapper = new ObjectMapper();
-        mapper.enableDefaultTyping();
 
         try {
 

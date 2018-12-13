@@ -8,7 +8,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This is a supporting class for Jackson to be able to serialize LocalDates in our contact file
+ */
+
 public class LocalDateSerializer extends StdSerializer<LocalDate> {
+
+
 
     public LocalDateSerializer() {
         super(LocalDate.class);

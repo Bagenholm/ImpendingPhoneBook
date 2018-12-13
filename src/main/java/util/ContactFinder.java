@@ -9,6 +9,10 @@ public class ContactFinder {
 
     Handler handler;
 
+    public ContactFinder(Handler handler) {
+        this.handler = handler;
+    }
+
     public Contact selectContact(List<Contact> list){
         if(list.size() == 1){
             return list.get(0);
