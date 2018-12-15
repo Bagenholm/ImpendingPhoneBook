@@ -101,6 +101,13 @@ class BirthdayCheckerTest {
        assertThrows(IllegalArgumentException.class, ()-> BirthdayChecker.birthdayNotifier(null, 50));
 
 
+    }
+
+    @Test
+    void giveEmptyContactListDoesNotThrowException() {
+
+        BirthdayChecker.birthdayNotifier(new Handler(), 30);
+        assertEquals("", outContent.toString());
 
     }
 }
