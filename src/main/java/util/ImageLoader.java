@@ -21,6 +21,6 @@ public class ImageLoader {
                 e.printStackTrace();
             }
         }
-        return "";
+        return "No image.";
     }
 }
