@@ -24,6 +24,87 @@ public class JsonIOStrategy implements IOStrategy {
     }
 
     /**
+     * Reads data from a json file and tries to parse it to a contactBook object.
+     * It firstly checks that :
+     * @param fileName exists in the users home/documents path.
+     * @return new contactBook or null if the file doesn't exist or if an error occurred while parsing.
+     * Since importTo in JsonIOStrategy now exists this method will mainly be used for auto-load on program boot.
+     */
+    public static ContactBook readFromJson(String fileName) {
+
+        if (fileName == null) {
+            throw new IllegalArgumentException("null used as filename");
+        }
+
+        String path = System.getProperty("user.home")
+                + File.separator + fileName + ".json";
+        File file = new File(path);
+
+        ObjectMapper mapper = new ObjectMapper();
+        ContactBook deSerializedContactBook = new ContactBook();
+
+        if (file.exists()) {
+            System.out.println(file.getName() + " loaded!");
+
+            try {
+                deSerializedContactBook = mapper.readValue(file, ContactBook.class);
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+
+        } else {
+            System.out.println("No auto-save exists. Auto-save not loaded!");
+            return null;
+        }
+
+        return deSerializedContactBook;
+
+    }
+
+    /**
+     * Method that first creates a file in the users home folder:
+     *
+     * @param fileName    .json
+     * @param contactBook is then serialized to Json data and saved in the file location. (see else clause)
+     *                    If file already exists and the name is not auto-save (which can be overriden) the method will save the file as temp.json
+     *                    instead. Since fileChooser methods now exists, this method will mainly be used for autosaves.
+     */
+    public static void writeToJson(String fileName, ContactBook contactBook) {
+
+        if (fileName == null) {
+            throw new IllegalArgumentException("null used as filename");
+        }
+
+        String path = System.getProperty("user.home")
+                + File.separator + fileName + ".json";
+
+        File file = new File(path);
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+
+            if (file.exists() && !fileName.equals("auto-save")) {
+                System.out.println(file.getName() + " exists. For your convenience we will save the file as temp.json instead");
+
+                String altPath = System.getProperty("user.home")
+                        + File.separator + "temp.json";
+
+                mapper.writeValue(new File(altPath), contactBook);
+                System.out.println("File saved");
+
+            } else {
+                mapper.writeValue(new File(path), contactBook);
+                System.out.println("File saved at: " + path);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
      *  Save method which utilizes JFileChooser instead of saving through console.
      *  Checks if contact book is instantiated through the handler and that the contact list is not empty.
      *  Then the user is prompted to choose if they want to save a contact or the whole book.
@@ -139,8 +220,6 @@ public class JsonIOStrategy implements IOStrategy {
         }
 
     }
-
-
 
 
 }

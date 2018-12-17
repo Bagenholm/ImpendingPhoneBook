@@ -5,6 +5,12 @@ public class IOContext {
     private IOStrategy importIOStrategy;
     private IOStrategy exportIOStrategy;
 
+    private IOContext() {
+    }
+
+    public static IOContext createIOContext() {
+        return new IOContext();
+    }
 
 
     public void setImportIOStrategy(IOStrategy importIOStrategy) {

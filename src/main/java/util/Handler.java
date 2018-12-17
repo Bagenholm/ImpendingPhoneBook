@@ -12,7 +12,7 @@ public class Handler {
     public ContactFinder contactFinder = new ContactFinder(this);
     public ASCIIConverter ascii = new ASCIIConverter();
     public MenuInitializer menuInitializer = new MenuInitializer(this);
-    IOContext io = new IOContext();
+    IOContext io = IOContext.createIOContext();
 
     public void init() {
         contactBook = autoLoad();
@@ -21,7 +21,7 @@ public class Handler {
     }
 
     public void save() {
-        FileWriter.writeToJson("auto-save", contactBook);
+        JsonIOStrategy.writeToJson("auto-save", contactBook);
     }
 
     public void saveNew() {
@@ -30,8 +30,8 @@ public class Handler {
     }
 
     public ContactBook autoLoad() {
-        if (FileReader.readFromJson("auto-save") != null) {
-            return FileReader.readFromJson("auto-save");
+        if (JsonIOStrategy.readFromJson("auto-save") != null) {
+            return JsonIOStrategy.readFromJson("auto-save");
         } else {
             return new ContactBook();
         }
