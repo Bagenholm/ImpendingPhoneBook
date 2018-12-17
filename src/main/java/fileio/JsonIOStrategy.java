@@ -30,7 +30,7 @@ public class JsonIOStrategy implements IOStrategy {
      * @return new contactBook or null if the file doesn't exist or if an error occurred while parsing.
      * Since importTo in JsonIOStrategy now exists this method will mainly be used for auto-load on program boot.
      */
-    public static ContactBook readFromJson(String fileName) {
+    public static ContactBook autoLoadFromJson(String fileName) {
 
         if (fileName == null) {
             throw new IllegalArgumentException("null used as filename");
@@ -70,36 +70,43 @@ public class JsonIOStrategy implements IOStrategy {
      *                    If file already exists and the name is not auto-save (which can be overriden) the method will save the file as temp.json
      *                    instead. Since fileChooser methods now exists, this method will mainly be used for autosaves.
      */
-    public static void writeToJson(String fileName, ContactBook contactBook) {
+    public static void autoSaveToJson(String fileName, ContactBook contactBook) {
 
         if (fileName == null) {
             throw new IllegalArgumentException("null used as filename");
         }
 
-        String path = System.getProperty("user.home")
-                + File.separator + fileName + ".json";
+        if (!contactBook.getContactList().isEmpty()) {
 
-        File file = new File(path);
-        ObjectMapper mapper = new ObjectMapper();
+            String path = System.getProperty("user.home")
+                    + File.separator + fileName + ".json";
 
-        try {
+            File file = new File(path);
+            ObjectMapper mapper = new ObjectMapper();
 
-            if (file.exists() && !fileName.equals("auto-save")) {
-                System.out.println(file.getName() + " exists. For your convenience we will save the file as temp.json instead");
+            try {
 
-                String altPath = System.getProperty("user.home")
-                        + File.separator + "temp.json";
+                if (file.exists() && !fileName.equals("auto-save")) {
+                    System.out.println(file.getName() + " exists. For your convenience we will save the file as temp.json instead");
 
-                mapper.writeValue(new File(altPath), contactBook);
-                System.out.println("File saved");
+                    String altPath = System.getProperty("user.home")
+                            + File.separator + "temp.json";
 
-            } else {
-                mapper.writeValue(new File(path), contactBook);
-                System.out.println("File saved at: " + path);
+                    mapper.writeValue(new File(altPath), contactBook);
+                    System.out.println("File saved");
+
+                } else {
+                    mapper.writeValue(new File(path), contactBook);
+                    System.out.println("File saved at: " + path);
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Cannot save empty contact book");
+
         }
 
     }
