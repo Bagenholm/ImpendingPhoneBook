@@ -22,16 +22,14 @@ public class MenuInitializer {
     public void initalizeMenus() {
 
         Menu mainMenu = new Menu(handler);
-        Menu createMenu = new Menu(handler);
         Menu saveMenu = new Menu(handler);
-        Menu loadMenu = new Menu(handler);
         Menu searchMenu = new Menu(handler);
         Menu editMenu = new Menu(handler);
         Menu quitMenu = new Menu(handler);
 
         //Main Menu
         mainMenu.add("Search for contact.", () -> searchMenu.run());
-        mainMenu.add("Create contact.", () -> createMenu.run());
+        mainMenu.add("Create contact.", () -> { addContact(); editMenu.runEntireMenu(); } );
         mainMenu.add("Print current contact.", () -> printCurrentContact());
         mainMenu.add("Edit contact.", () -> editMenu.run());
         mainMenu.add("Print image.", () -> System.out.println(c.getImage()));
@@ -39,18 +37,10 @@ public class MenuInitializer {
         mainMenu.add("Load.", () -> { handler.load(); System.out.println(handler.contactBook); } );
         mainMenu.add("Quit.", () -> quitMenu.run());
 
-        //Create Menu
-        createMenu.add("Back to main menu.", () -> mainMenu.run());
-        createMenu.add("Make new contact.", () -> { addContact(); editMenu.runEntireMenu(); } );
-
         //Save Menu
         saveMenu.add("Back to main menu.", () -> mainMenu.run());
         saveMenu.add("Save to existing file.", () -> handler.save());
         saveMenu.add("Save to new file.", () -> handler.saveNew());
-
-        //Load Menu
-        loadMenu.add("Back to main menu.", () -> mainMenu.run());
-        loadMenu.add("Load from file.", () -> handler.load());
 
         //Search Menu
         searchMenu.add("Back to main menu.", () -> mainMenu.run());
@@ -70,7 +60,7 @@ public class MenuInitializer {
         editMenu.add("Edit contact email.", () -> c.setEmail(input().verifyString()));
         editMenu.add("Edit contact note.", () -> c.setNote(input().verifyString()));
         editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(input().verifyDate()));
-        editMenu.add("Contact:", () -> printCurrentContact());
+        editMenu.add("Print current contact.", () -> printCurrentContact());
 
         //Quit Menu
         quitMenu.add("Back to main menu.", () -> mainMenu.run());

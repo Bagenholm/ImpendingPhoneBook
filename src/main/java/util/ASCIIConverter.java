@@ -20,6 +20,7 @@ public class ASCIIConverter {
 
     public BufferedImage makeImage() {
         try {
+
             BufferedImage image = ImageIO.read(FileSelector.chooseImageFileLoad());
             return image;
         } catch (IOException e) {
