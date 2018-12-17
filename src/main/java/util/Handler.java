@@ -6,6 +6,7 @@ import fileio.FileWriter;
 
 public class Handler {
 
+    //:TODO kolla new här (konstruktor?)
     public ContactBook contactBook = new ContactBook();
     public InputManager input = new InputManager();
     public ContactFinder contactFinder = new ContactFinder(this);

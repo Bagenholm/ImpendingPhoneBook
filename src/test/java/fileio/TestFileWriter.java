@@ -1,7 +1,7 @@
+package fileio;
+
 import data.Contact;
 import data.ContactBook;
-import fileio.FileReader;
-import fileio.FileWriter;
 import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
@@ -13,10 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestFileWriter {
 
 
-
-    /**
-     * Needs equal and hashcode implementation in Contact and contactBook
-     */
     @Test
     void fileWriteReturnsNewFileWithSameInformation() {
         ContactBook contactBook = new ContactBook();
@@ -24,7 +20,7 @@ public class TestFileWriter {
         StringBuilder out = new StringBuilder();
         out.append("test-ipb-").append(new SimpleDateFormat("yyyy-MM-dd hh-mm-ss").format(new Date()));
         FileWriter.writeToJson(out.toString(), contactBook);
-        ContactBook emptyContactBook = new ContactBook();
+        ContactBook emptyContactBook;
         emptyContactBook = FileReader.readFromJson(out.toString());
         assertEquals(contactBook, emptyContactBook);
 

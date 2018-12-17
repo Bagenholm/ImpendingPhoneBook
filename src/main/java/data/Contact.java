@@ -9,11 +9,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 
-/**
- *Class generated to try out contactBook with fileio. Should be replaced with real contact later.
- * Needs deserializer for date to show correctly.
- */
-
 public class Contact {
 
     private String number;

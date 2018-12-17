@@ -10,9 +10,7 @@ import java.util.List;
 
 public class TestContactFinder {
 
-
-    Handler handler = new Handler();
-    ContactFinder contactFinder = new ContactFinder(handler);
+    ContactFinder contactFinder = new ContactFinder(new Handler());
 
     Contact a1 = new Contact("Alice","0707959697", "Slättåsvägen 34",
             LocalDate.of(1999, 05, 25),"(>^_^)>","testing@gmail.com");
@@ -23,7 +21,7 @@ public class TestContactFinder {
     Contact a4 = new Contact("Jonas","0755113259", "Slättåsvägen 54",
             LocalDate.of(1999, 05, 25),"(>^_^)>","testing@live.se");
 
-
+    Handler handler = new Handler();
 
     @Test
     void TestSearchByName() {
@@ -34,7 +32,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByName("Alice");
+        results = contactFinder.searchByName("Alice", handler);
         assertTrue(results.size()==2);
     }
 
@@ -46,7 +44,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByEmail("testing@gmail.com");
+        results = contactFinder.searchByEmail("testing@gmail.com", handler);
         assertTrue(results.size()==1);
     }
 
@@ -58,7 +56,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByNote("(>^_^)>");
+        results = contactFinder.searchByNote("(>^_^)>", handler);
         assertTrue(results.size()==4);
     }
 
@@ -70,7 +68,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByAddress("Slättåsvägen 54");
+        results = contactFinder.searchByAddress("Slättåsvägen 54", handler);
         assertTrue(results.size()==2);
     }
 
@@ -82,7 +80,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByPhoneNumber("0755113259");
+        results = contactFinder.searchByPhoneNumber("0755113259", handler);
         assertTrue(results.size()==1);
     }
 
@@ -100,7 +98,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByAny("25");
+        results = contactFinder.searchByAny("25", handler);
         assertTrue(results.size()==4);
 
     }
@@ -114,7 +112,7 @@ public class TestContactFinder {
         handler.contactBook.getContactList().add(a4);
 
         List<Contact> results;
-        results = contactFinder.searchByBirthDate(LocalDate.of(1999, 05, 25).toString());
+        results = contactFinder.searchByBirthDate(LocalDate.of(1999, 05, 25).toString(), handler);
         assertTrue(results.size()==3);
     }
 
