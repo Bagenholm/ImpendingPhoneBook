@@ -28,7 +28,6 @@ public class FileSelector {
         return getFileForSave(fileChooser);
     }
 
-
     /**
      * @return File from one of the chosen extension filters, opens load dialog in subsequent step.
      */
@@ -97,19 +96,14 @@ public class FileSelector {
 
         JFileChooser fileChooser = getFileChooser("Image-Files", "jpg, png, gif");
         return getFileForSave(fileChooser);
-
 }
+
     //todo: om patrik vill använda
     public static File chooseImageFileLoad() {
 
-
         JFileChooser fileChooser = getFileChooser("Image-Files", "jpg, png, gif");
         return getFileFromLoad(fileChooser);
-
-
     }
-
-
 }
 
 

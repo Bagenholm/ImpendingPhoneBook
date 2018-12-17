@@ -1,7 +1,11 @@
 package util;
 
+import fileio.FileSelector;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class ASCIIConverter {
     boolean negative;
@@ -10,29 +14,47 @@ public class ASCIIConverter {
         this(false);
     }
 
-    public ASCIIConverter(final boolean negative) {
+    public ASCIIConverter(boolean negative) {
         this.negative = negative;
     }
 
+    public BufferedImage makeImage() {
+        try {
+            BufferedImage image = ImageIO.read(FileSelector.chooseImageFileLoad());
+            return image;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    //Image to ascii by converting RGB to gray value.
-    public String convert(final BufferedImage image) {
+    /**
+     * @param image
+     * @return image as String, ascii art.
+     */
+    public String convert(BufferedImage image) {
         StringBuilder sb = new StringBuilder((image.getWidth() + 1) * image.getHeight());
         for (int y = 0; y < image.getHeight(); y = y+4) {
             if (sb.length() != 0) sb.append("\n");
             for (int x = 0; x < image.getWidth(); x = x + 4) {
                 Color pixelColor = new Color(image.getRGB(x, y));
                 double gValue = (double) pixelColor.getRed() * 0.2989 + (double) pixelColor.getBlue() * 0.5870 + (double) pixelColor.getGreen() * 0.1140;
-                final char s = negative ? returnStrNeg(gValue) : returnStrPos(gValue);
+                char s = negative ? returnStrNeg(gValue) : returnStrPos(gValue);
                 sb.append(s);
             }
         }
         return sb.toString();
     }
 
+
+    /**
+     * @param g grayscale value
+     * @return char matching "dark value".
+     */
+
     private char returnStrPos(double g)
     {
-        final char str;
+        char str;
 
         if (g >= 230.0) {
             str = ' ';
@@ -53,19 +75,17 @@ public class ASCIIConverter {
         } else {
             str = '@';
         }
-        return str; // return the character
 
+        return str;
     }
 
     /**
-     * Same method as above, except it reverses the darkness of the pixel. A dark pixel is given a light character and vice versa.
-     *
-     * @param g grayscale
-     * @return char
+     * @param g grayscale value
+     * @return char matching "light value".
      */
 
     private char returnStrNeg(double g) {
-        final char str;
+        char str;
 
         if (g >= 230.0) {
             str = '@';
@@ -86,6 +106,7 @@ public class ASCIIConverter {
         } else {
             str = ' ';
         }
+
         return str;
     }
 }

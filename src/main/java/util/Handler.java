@@ -3,6 +3,7 @@ package util;
 import data.ContactBook;
 import fileio.FileReader;
 import fileio.FileWriter;
+import menu.MenuInitializer;
 
 public class Handler {
 
@@ -10,6 +11,13 @@ public class Handler {
     public ContactBook contactBook = new ContactBook();
     public InputManager input = new InputManager();
     public ContactFinder contactFinder = new ContactFinder(this);
+    public ASCIIConverter ascii = new ASCIIConverter();
+    public MenuInitializer menuInitializer = new MenuInitializer(this);
+
+    public void init() {
+        menuInitializer.initalizeMenus();
+        menuInitializer.mainMenu.run();
+    }
 
     public void save() {
         FileWriter.writeToJson("auto-save", contactBook);

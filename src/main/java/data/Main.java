@@ -2,6 +2,7 @@ package data;
 
 import fileio.IOContext;
 import fileio.JsonIOStrategy;
+import menu.MenuInitializer;
 import util.Handler;
 import java.time.LocalDate;
 import java.time.Month;
@@ -13,11 +14,13 @@ public class Main  {
 
     public static void main(String[] args) {
 
+        Handler handler = new Handler();
+        handler.init();
+
 
         /**
          * Code below for testing FileChooser and fileIO
-         */
-
+         *
         Handler handler = new Handler();
 
         handler.contactBook.add(new Contact("Sven", "0706875432", "Raka vägen 15", LocalDate.of(1987,12,06), "My note says hi", "svennyboy@gmail.com"));
@@ -36,7 +39,7 @@ public class Main  {
         System.out.println(handler.contactBook);
         System.exit(0);
 
-
+        */
 
 
     }

@@ -1,4 +1,3 @@
-
 package util;
 
 import java.time.LocalDate;
@@ -42,7 +41,7 @@ public class InputManager {
                 return i;
             else return verifyInt(min, max);
         } else {
-            return verifyInt();
+            return verifyInt(min, max);
         }
     }
 
@@ -79,11 +78,10 @@ public class InputManager {
                 month = input.substring(2, 4);
                 day = input.substring(4, 6);
                 return LocalDate.parse(year + "-" + month + "-" + day);
-
             }
+
         } else {
             return verifyDate();
         }
     }
-
 }
