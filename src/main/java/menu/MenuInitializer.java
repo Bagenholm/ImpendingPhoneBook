@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
 public class MenuInitializer {
 
     Handler handler;
-    Contact c;
+    Contact c = new Contact();
 
     public MenuInitializer(Handler handler) {
         this.handler = handler;
@@ -71,21 +71,21 @@ public class MenuInitializer {
     }
 
     //Shorthand for readability.
-    public String verifyString(){
+    private String verifyString(){
         return handler.input.verifyString();
     }
 
-    public ContactFinder finder(){
+    private ContactFinder finder(){
         return handler.contactFinder;
     }
 
-    public InputManager input(){
+    private InputManager input(){
         return handler.input;
     }
 
-    public ASCIIConverter ascii() {return handler.ascii; }
+    private ASCIIConverter ascii() {return handler.ascii; }
 
-    public void addContact() {
+    private void addContact() {
         c = new Contact();
         handler.contactBook.add(c);
     }

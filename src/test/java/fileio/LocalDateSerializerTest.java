@@ -26,7 +26,7 @@ class LocalDateSerializerTest {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            assertEquals("{\"number\":\"\",\"name\":\"\",\"email\":\"\",\"note\":\"\",\"address\":\"\",\"image\":null,\"birthDate\":\"1989-10-15\"}", objectMapper.writeValueAsString(contact));
+            assertEquals("{\"number\":\"\",\"name\":\"\",\"email\":\"\",\"note\":\"\",\"address\":\"\",\"image\":\"\",\"birthDate\":\"1989-10-15\"}", objectMapper.writeValueAsString(contact));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
