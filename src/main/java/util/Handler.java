@@ -1,8 +1,7 @@
 package util;
 
 import data.ContactBook;
-import fileio.FileReader;
-import fileio.FileWriter;
+import fileio.*;
 import menu.MenuInitializer;
 
 public class Handler {
@@ -13,10 +12,12 @@ public class Handler {
     public ContactFinder contactFinder = new ContactFinder(this);
     public ASCIIConverter ascii = new ASCIIConverter();
     public MenuInitializer menuInitializer = new MenuInitializer(this);
+    IOContext io = new IOContext();
 
     public void init() {
+        contactBook = autoLoad();
+        BirthdayChecker.birthdayNotifier(this, 30);
         menuInitializer.initalizeMenus();
-        menuInitializer.mainMenu.run();
     }
 
     public void save() {
@@ -24,10 +25,20 @@ public class Handler {
     }
 
     public void saveNew() {
-        FileWriter.writeToJson(input.verifyString(), contactBook);
+        io.setExportIOStrategy(new JsonIOStrategy(this));
+        io.exportTo();
+    }
+
+    public ContactBook autoLoad() {
+        if (FileReader.readFromJson("auto-save") != null) {
+            return FileReader.readFromJson("auto-save");
+        } else {
+            return new ContactBook();
+        }
     }
 
     public void load() {
-        contactBook = FileReader.readFromJson(input.verifyString());
+        io.setImportIOStrategy(new JsonIOStrategy(this));
+        io.importTo();
     }
 }

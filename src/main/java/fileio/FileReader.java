@@ -29,7 +29,7 @@ public class FileReader implements IOStrategy {
         ContactBook deSerializedContactBook = new ContactBook();
 
         if (file.exists()) {
-            System.out.println(file.getName() + " exists");
+            System.out.println(file.getName() + " loaded!");
 
             try {
                 deSerializedContactBook = mapper.readValue(file, ContactBook.class);
@@ -39,7 +39,7 @@ public class FileReader implements IOStrategy {
             }
 
         } else {
-            System.out.println("File does not exist, try with a different name");
+            System.out.println("No auto-save exists. Auto-save not loaded!");
             return null;
         }
 

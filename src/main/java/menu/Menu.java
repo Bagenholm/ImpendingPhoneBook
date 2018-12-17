@@ -28,14 +28,14 @@ public class Menu {
 
     public int choice(){
         System.out.println("Please choose your action");
-        System.out.println(menuChoice.size());
-
         return handler.input.verifyInt(1, menuChoice.size());
     }
 
     public void run(){
-        show();
-        execute(choice());
+        while(true) {
+            show();
+            execute(choice());
+        }
     }
 
     public void execute(int choice) {
@@ -43,12 +43,9 @@ public class Menu {
     }
 
     public void runEntireMenu(){
-        for (int i = 0; i <= menuOptions.size() -1 ; i++) {
+        for (int i = 2; i <= menuOptions.size() -1 ; i++) {
+            System.out.println(menuChoice.get(i));
             menuOptions.get(i).execute();
         }
-
-        /*for (Selectable s : menuOptions ) {
-            s.execute();
-        }*/
     }
 }

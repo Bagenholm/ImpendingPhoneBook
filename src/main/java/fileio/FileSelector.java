@@ -94,14 +94,14 @@ public class FileSelector {
     //todo: om patrik vill använda
     public static File chooseImageFileSave() {
 
-        JFileChooser fileChooser = getFileChooser("Image-Files", "jpg, png, gif");
+        JFileChooser fileChooser = getFileChooser("Image-Files", "png");
         return getFileForSave(fileChooser);
 }
 
     //todo: om patrik vill använda
     public static File chooseImageFileLoad() {
 
-        JFileChooser fileChooser = getFileChooser("Image-Files", "jpg, png, gif");
+        JFileChooser fileChooser = getFileChooser("Image-Files", "png");
         return getFileFromLoad(fileChooser);
     }
 }

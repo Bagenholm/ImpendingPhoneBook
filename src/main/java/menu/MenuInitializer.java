@@ -1,9 +1,7 @@
 package menu;
 
-//ContactFinder returnerar Contact? Ska ContactFinder ta parametrar?
-//Contact-variabel birthYear kanske ska vara birthDay istället? Och inte lagra som en int utan en kalender?
-
 import data.Contact;
+import data.ContactBook;
 import fileio.FileSelector;
 import util.ASCIIConverter;
 import util.ContactFinder;
@@ -21,28 +19,29 @@ public class MenuInitializer {
         this.handler = handler;
     }
 
-
-    public Menu mainMenu = new Menu(handler);
-    Menu createMenu = new Menu(handler);
-    Menu saveMenu = new Menu(handler);
-    Menu loadMenu = new Menu(handler);
-    Menu searchMenu = new Menu(handler);
-    Menu editMenu = new Menu(handler);
-    Menu quitMenu = new Menu(handler);
-
     public void initalizeMenus() {
+
+        Menu mainMenu = new Menu(handler);
+        Menu createMenu = new Menu(handler);
+        Menu saveMenu = new Menu(handler);
+        Menu loadMenu = new Menu(handler);
+        Menu searchMenu = new Menu(handler);
+        Menu editMenu = new Menu(handler);
+        Menu quitMenu = new Menu(handler);
 
         //Main Menu
         mainMenu.add("Search for contact.", () -> searchMenu.run());
         mainMenu.add("Create contact.", () -> createMenu.run());
+        mainMenu.add("Print current contact.", () -> printCurrentContact());
         mainMenu.add("Edit contact.", () -> editMenu.run());
+        mainMenu.add("Print image.", () -> System.out.println(c.getImage()));
         mainMenu.add("Save.", () -> saveMenu.run());
-        mainMenu.add("Load.", () -> loadMenu.run());
+        mainMenu.add("Load.", () -> { handler.load(); System.out.println(handler.contactBook); } );
         mainMenu.add("Quit.", () -> quitMenu.run());
 
         //Create Menu
         createMenu.add("Back to main menu.", () -> mainMenu.run());
-        createMenu.add("Make new contact.", () -> { c = new Contact(); editMenu.runEntireMenu(); } );
+        createMenu.add("Make new contact.", () -> { addContact(); editMenu.runEntireMenu(); } );
 
         //Save Menu
         saveMenu.add("Back to main menu.", () -> mainMenu.run());
@@ -64,20 +63,22 @@ public class MenuInitializer {
 
         //Edit Menu
         editMenu.add("Back to main menu.", () -> mainMenu.run());
-        editMenu.add("Edit contact name.", () -> c.setName(input().verifyString())); //TODO: C=searched contact?
+        editMenu.add("Edit contact image.", () -> c.setImage(ascii().convert(ascii().makeImage())));
+        editMenu.add("Edit contact name.", () -> c.setName(input().verifyString()));
         editMenu.add("Edit contact phone number.", () -> c.setNumber(input().verifyString()));
         editMenu.add("Edit contact adress.", () -> c.setAddress(input().verifyString()));
         editMenu.add("Edit contact email.", () -> c.setEmail(input().verifyString()));
         editMenu.add("Edit contact note.", () -> c.setNote(input().verifyString()));
         editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(input().verifyDate()));
-        editMenu.add("Edit contact image.", () -> c.setImage(ascii().convert(ascii().makeImage())));
+        editMenu.add("Contact:", () -> printCurrentContact());
 
         //Quit Menu
         quitMenu.add("Back to main menu.", () -> mainMenu.run());
         quitMenu.add("Save and quit.", () -> { handler.save(); System.exit(0);});
         quitMenu.add("Quit without saving.", () -> System.exit(0));
-    }
 
+        mainMenu.run();
+    }
 
     //Shorthand for readability.
     public String verifyString(){
@@ -93,4 +94,13 @@ public class MenuInitializer {
     }
 
     public ASCIIConverter ascii() {return handler.ascii; }
+
+    public void addContact() {
+        c = new Contact();
+        handler.contactBook.add(c);
+    }
+
+    private void printCurrentContact() {
+        System.out.println(c);
+    }
 }

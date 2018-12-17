@@ -36,14 +36,14 @@ public class ASCIIConverter {
         StringBuilder sb = new StringBuilder((image.getWidth() + 1) * image.getHeight());
         for (int y = 0; y < image.getHeight(); y = y+4) {
             if (sb.length() != 0) sb.append("\n");
-            for (int x = 0; x < image.getWidth(); x = x + 4) {
+            for (int x = 0; x < image.getWidth(); x = x + 2) {
                 Color pixelColor = new Color(image.getRGB(x, y));
                 double gValue = (double) pixelColor.getRed() * 0.2989 + (double) pixelColor.getBlue() * 0.5870 + (double) pixelColor.getGreen() * 0.1140;
                 char s = negative ? returnStrNeg(gValue) : returnStrPos(gValue);
                 sb.append(s);
             }
         }
-        return sb.toString();
+        return sb.toString() + " \n \n \n";
     }
 
 

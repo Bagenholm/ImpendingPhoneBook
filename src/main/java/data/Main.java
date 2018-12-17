@@ -1,20 +1,14 @@
 package data;
 
-import fileio.IOContext;
-import fileio.JsonIOStrategy;
-import menu.MenuInitializer;
 import util.Handler;
-import java.time.LocalDate;
-import java.time.Month;
 
 
 public class Main  {
 
-
-
     public static void main(String[] args) {
 
         Handler handler = new Handler();
+
         handler.init();
 
 
@@ -40,7 +34,5 @@ public class Main  {
         System.exit(0);
 
         */
-
-
     }
 }
