@@ -46,7 +46,6 @@ public class ASCIIConverter {
         return sb.toString() + " \n \n \n";
     }
 
-
     /**
      * @param g grayscale value
      * @return char matching "dark value".
