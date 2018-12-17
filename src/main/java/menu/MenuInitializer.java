@@ -61,14 +61,6 @@ public class MenuInitializer {
         searchMenu.add("Search by any / Free search", () -> c = handler.contactFinder.searcyByAny());
         searchMenu.add("Back to main menu.", () -> mainMenu.run()); */
 
-        /*
-        //Remove Menu
-        removeMenu.add("Search by name.", () -> c = handler.contactFinder.searchByName());
-        removeMenu.add("Search by phone number.", () -> c = handler.contactFinder.searchByEmail());
-        removeMenu.add("Removing the person", () -> handler.contactBook.getContactList().remove(c));
-        removeMenu.add("Back to main menu.", () -> mainMenu.run());
-        */
-
 
         //Edit Menu
         editMenu.add("Edit contact name.", () -> c.setName(handler.input.verifyString())); //TODO: C=searched contact?
@@ -77,7 +69,6 @@ public class MenuInitializer {
         editMenu.add("Edit contact email.", () -> c.setEmail(handler.input.verifyString()));
         editMenu.add("Edit contact note.", () -> c.setNote(handler.input.verifyString()));
         editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(handler.input.verifyDate()));
-
 
 
         //Quit Menu
