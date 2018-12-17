@@ -10,7 +10,9 @@ import java.util.List;
 
 public class TestContactFinder {
 
-    ContactFinder contactFinder = new ContactFinder(new Handler());
+    Handler handler = new Handler();
+
+    ContactFinder contactFinder = new ContactFinder(handler);
 
     Contact a1 = new Contact("Alice","0707959697", "Slättåsvägen 34",
             LocalDate.of(1999, 05, 25),"(>^_^)>","testing@gmail.com");
@@ -21,7 +23,6 @@ public class TestContactFinder {
     Contact a4 = new Contact("Jonas","0755113259", "Slättåsvägen 54",
             LocalDate.of(1999, 05, 25),"(>^_^)>","testing@live.se");
 
-    Handler handler = new Handler();
 
     @Test
     void TestSearchByName() {
@@ -45,7 +46,7 @@ public class TestContactFinder {
 
         List<Contact> results;
         results = contactFinder.searchByEmail("testing@gmail.com");
-        assertTrue(results.size()==1);
+        assertEquals(1, results.size());
     }
 
     @Test
@@ -91,7 +92,6 @@ public class TestContactFinder {
 
     @Test
     void TestSearchByAny() {
-
         handler.contactBook.getContactList().add(a1);
         handler.contactBook.getContactList().add(a2);
         handler.contactBook.getContactList().add(a3);

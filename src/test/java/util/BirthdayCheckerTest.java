@@ -41,8 +41,6 @@ class BirthdayCheckerTest {
     @RepeatedTest(367)
     void testBirthdayNotifierGiveExpectedResult() {
 
-        //TODO: Kolla så att det inte går att lägga till folk födda efter 2018? Hör med patrik
-
         Handler handler = new Handler();
         Contact contact = new Contact("Sven", "0706875432", "Raka vägen 15", birthday, "My note says hi", "svennyboy@gmail.com");
         handler.contactBook.add(contact);
@@ -70,8 +68,7 @@ class BirthdayCheckerTest {
     @Test
     void noStringPrintedWhenOutsideNotifiablePeriod() {
 
-        //TODO: Kolla så att det inte går att lägga till folk födda efter 2018? Hör med patrik
-        LocalDate testDateNow = LocalDate.of(2018,10,15);
+        LocalDate testDateNow = LocalDate.of(2018,6,15);
         Handler handler = new Handler();
         Contact contact = new Contact("Sven", "0706875432", "Raka vägen 15", birthday, "My note says hi", "svennyboy@gmail.com");
         handler.contactBook.add(contact);
@@ -80,13 +77,13 @@ class BirthdayCheckerTest {
         if (nextBDay.isBefore(testDateNow)) {
             nextBDay = nextBDay.plusYears(1);
         }
-        if (nextBDay.isEqual((LocalDate.now()))) {
+        if (nextBDay.isEqual((testDateNow))) {
             birthDayString = "Today is Sven's birthday!\n";
         }
 
         Period p = Period.between(testDateNow, nextBDay);
         long p2 = ChronoUnit.DAYS.between(testDateNow, nextBDay);
-        BirthdayChecker.birthdayNotifier(handler, 16);
+        BirthdayChecker.birthdayNotifier(handler, 15);
 
 
         assertEquals("", outContent.toString());
