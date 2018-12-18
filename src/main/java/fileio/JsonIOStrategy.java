@@ -116,11 +116,12 @@ public class JsonIOStrategy implements IOStrategy {
      *  Checks if contact book is instantiated through the handler and that the contact list is not empty.
      *  Then the user is prompted to choose if they want to save a contact or the whole book.
      *  The object is then serialized to Json data and saved in the file location.
+     * @param fileFromFileChooser
      */
 
 
     @Override
-    public void exportTo() {
+    public void exportTo(File fileFromFileChooser) {
 
         if (handler.contactBook != null && handler.contactBook.getContactList().size()!=0) {
 
@@ -141,7 +142,7 @@ public class JsonIOStrategy implements IOStrategy {
 
             }
 
-            File file = FileSelector.chooseJsonFileSave();
+            File file = fileFromFileChooser;
 
             if (file != null && result == 1) {
 
@@ -182,9 +183,10 @@ public class JsonIOStrategy implements IOStrategy {
      * It firstly checks that the contactBook is instantiated, then opens a fileChooser where you can select json files and tries to parse the json file
      * and overwrite our contactBook with it. If the Json file does not contain a contactBook the method will instead try to add it as a regular contact.
      *
+     * @param fileFromFileChooser
      */
 
-    public void importTo() {
+    public void importTo(File fileFromFileChooser) {
 
         if (handler.contactBook == null) {
             System.err.println("No contactBook instantiated, cannot load from file");
@@ -192,7 +194,7 @@ public class JsonIOStrategy implements IOStrategy {
         }
 
 
-        File file = FileSelector.chooseJsonFileLoad();
+        File file = fileFromFileChooser;
 
         if (file != null) {
 

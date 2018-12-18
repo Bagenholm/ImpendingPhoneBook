@@ -22,54 +22,6 @@ class JsonIOStrategyTest {
     }
 
 
-    @Test
-    void bodyInExportToMethodDoesNotRunIfContactBookIsNotInstantiated() {
-
-        Handler handler = new Handler();
-
-        handler.contactBook = null;
-
-        IOContext ioContext = IOContext.createIOContext();
-
-        ioContext.setExportIOStrategy(new JsonIOStrategy(handler));
-
-        ioContext.exportTo();
-        assertFalse(false);
-
-
-    }
-
-
-    @Test
-    void bodyInExportToMethodDoesNotRunIfContactBookIsEmpty() {
-
-        Handler handler = new Handler();
-
-        IOContext ioContext = IOContext.createIOContext();
-
-        ioContext.setExportIOStrategy(new JsonIOStrategy(handler));
-
-        ioContext.exportTo();
-        assertFalse(false);
-
-
-    }
-
-    @Test
-    void throwsExceptionIfNoContactBookInstantiatedWhenImporting() {
-
-        Handler handler = new Handler();
-
-        handler.contactBook = null;
-
-        IOContext ioContext = IOContext.createIOContext();
-
-        ioContext.setImportIOStrategy(new JsonIOStrategy(handler));
-
-        assertThrows(IllegalArgumentException.class, () -> ioContext.importTo());
-
-
-    }
 
     @Test
     void readFromJsonReturnsNullWhenNoFileMatch() {

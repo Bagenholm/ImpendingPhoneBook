@@ -1,9 +1,11 @@
 package fileio;
 
+import java.io.File;
+
 public interface IOStrategy {
 
-    void exportTo();
+    void exportTo(File fileFromFileChooser);
 
-    void importTo();
+    void importTo(File fileFromFileChooser);
 
 }

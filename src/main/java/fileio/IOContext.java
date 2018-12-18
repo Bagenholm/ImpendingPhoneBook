@@ -29,8 +29,11 @@ public class IOContext {
 
     public void exportTo() {
 
-        if (exportIOStrategy!=null) {
-            exportIOStrategy.exportTo();
+        if (exportIOStrategy instanceof JsonIOStrategy) {
+            exportIOStrategy.exportTo(FileSelector.chooseJsonFileSave());
+        }
+        else if (exportIOStrategy instanceof ImageIOStrategy) {
+            exportIOStrategy.exportTo(FileSelector.chooseImageFileSave());
         }
         else {
             System.out.println("no strategy set, cannot execute command");
@@ -39,8 +42,11 @@ public class IOContext {
 
     public void importTo() {
 
-        if(importIOStrategy!=null){
-            importIOStrategy.importTo();
+        if(importIOStrategy instanceof JsonIOStrategy){
+            importIOStrategy.importTo(FileSelector.chooseJsonFileLoad());
+        }
+        else if (importIOStrategy instanceof ImageIOStrategy) {
+            importIOStrategy.importTo(FileSelector.chooseImageFileLoad());
         }
         else {
             System.out.println("no strategy set, cannot execute command");
