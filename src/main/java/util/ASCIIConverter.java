@@ -11,11 +11,10 @@ public class ASCIIConverter {
 
     public BufferedImage makeImage() {
         try {
-
             BufferedImage image = ImageIO.read(FileSelector.chooseImageFileLoad());
             return image;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+
         }
         return null;
     }
@@ -25,12 +24,19 @@ public class ASCIIConverter {
      * @return image as String, ascii art.
      */
     public String convert(BufferedImage image) {
+        if (image == null) {
+            return " ";
+        }
         StringBuilder sb = new StringBuilder((image.getWidth() + 1) * image.getHeight());
         for (int y = 0; y < image.getHeight(); y = y+4) {
-            if (sb.length() != 0) sb.append("\n");
+            if (sb.length() != 0) {
+                sb.append("\n");
+            }
             for (int x = 0; x < image.getWidth(); x = x + 2) {
                 Color pixelColor = new Color(image.getRGB(x, y));
-                double gValue = (double) pixelColor.getRed() * 0.2989 + (double) pixelColor.getBlue() * 0.5870 + (double) pixelColor.getGreen() * 0.1140;
+                double gValue = (double) pixelColor.getRed() * 0.2989
+                        + (double) pixelColor.getBlue() * 0.5870
+                        + (double) pixelColor.getGreen() * 0.1140;
                 char s = returnStrPos(gValue);
                 sb.append(s);
             }

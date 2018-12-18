@@ -48,7 +48,7 @@ public class FileSelector {
 
         if (fileChooser==null) {
 
-            throw new IllegalArgumentException("no fileChooser as input parameter");
+            throw new IllegalArgumentException("No fileChooser as input parameter");
         }
 
         int result = fileChooser.showSaveDialog(null);
@@ -59,7 +59,7 @@ public class FileSelector {
 
         }
         else {
-            System.out.println("no filename input or cancel pressed");
+            System.out.println("No file name input or cancel pressed");
             return null;
 
         }
@@ -74,7 +74,7 @@ public class FileSelector {
     private static File getFileFromLoad(JFileChooser fileChooser){
 
             if (fileChooser==null) {
-                throw new IllegalArgumentException("no fileChooser as input parameter");
+                throw new IllegalArgumentException("No fileChooser as input parameter");
             }
 
             int result = fileChooser.showOpenDialog(null);
@@ -84,20 +84,12 @@ public class FileSelector {
                 return file;
 
             } else {
-                System.out.println("no file selected");
+                System.out.println("No file selected");
                 return null;
 
             }
 
         }
-
-
-    public static File chooseImageFileSave() {
-
-        JFileChooser fileChooser = getFileChooser("Image-Files", "png");
-        return getFileForSave(fileChooser);
-}
-
 
     public static File chooseImageFileLoad() {
 
@@ -105,5 +97,3 @@ public class FileSelector {
         return getFileFromLoad(fileChooser);
     }
 }
-
-
