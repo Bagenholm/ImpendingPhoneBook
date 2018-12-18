@@ -26,12 +26,14 @@ public class MenuInitializer {
         Menu searchMenu = new Menu(handler);
         Menu editMenu = new Menu(handler);
         Menu quitMenu = new Menu(handler);
+        Menu removeMenu = new Menu(handler);
 
         //Main Menu
         mainMenu.add("Search for contact.", () -> searchMenu.run());
         mainMenu.add("Create contact.", () -> { addContact(); editMenu.runEntireMenu(); } );
         mainMenu.add("Print current contact.", () -> printCurrentContact());
         mainMenu.add("Edit contact.", () -> editMenu.run());
+        mainMenu.add("Remove contact.", () -> removeMenu.run());
         mainMenu.add("Print image.", () -> System.out.println(c.getImage()));
         mainMenu.add("Save.", () -> saveMenu.run());
         mainMenu.add("Load.", () -> { handler.load(); System.out.println(handler.contactBook); } );
@@ -61,6 +63,11 @@ public class MenuInitializer {
         editMenu.add("Edit contact note.", () -> c.setNote(input().verifyString()));
         editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(input().verifyDate()));
         editMenu.add("Print current contact.", () -> printCurrentContact());
+
+        //Remove menu
+        removeMenu.add("Back to main menu.", () -> mainMenu.run());
+        removeMenu.add("Remove contact" + c.getName(), () -> handler.contactBook.getContactList().remove(c
+        ));
 
         //Quit Menu
         quitMenu.add("Back to main menu.", () -> mainMenu.run());
