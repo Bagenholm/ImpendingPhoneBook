@@ -1,5 +1,7 @@
 package fileio;
 
+import util.InputManager;
+
 public class IOContext {
 
     private IOStrategy importIOStrategy;
@@ -30,11 +32,14 @@ public class IOContext {
     public void exportTo() {
 
         if (exportIOStrategy instanceof JsonIOStrategy) {
-            exportIOStrategy.exportTo(FileSelector.chooseJsonFileSave());
+
+            System.out.println("Do you want to save a contact (1) or the contactBook (2)?");
+            int result =  new InputManager().verifyInt(1, 2);
+
+            exportIOStrategy.exportTo(FileSelector.chooseJsonFileSave(), result);
         }
-        else if (exportIOStrategy instanceof ImageIOStrategy) {
-            exportIOStrategy.exportTo(FileSelector.chooseImageFileSave());
-        }
+
+
         else {
             System.out.println("no strategy set, cannot execute command");
         }
@@ -43,11 +48,9 @@ public class IOContext {
     public void importTo() {
 
         if(importIOStrategy instanceof JsonIOStrategy){
-            importIOStrategy.importTo(FileSelector.chooseJsonFileLoad());
+            importIOStrategy.importFrom(FileSelector.chooseJsonFileLoad());
         }
-        else if (importIOStrategy instanceof ImageIOStrategy) {
-            importIOStrategy.importTo(FileSelector.chooseImageFileLoad());
-        }
+
         else {
             System.out.println("no strategy set, cannot execute command");
         }

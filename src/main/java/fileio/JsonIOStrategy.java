@@ -28,7 +28,7 @@ public class JsonIOStrategy implements IOStrategy {
      * It firstly checks that :
      * @param fileName exists in the users home/documents path.
      * @return new contactBook or null if the file doesn't exist or if an error occurred while parsing.
-     * Since importTo in JsonIOStrategy now exists this method will mainly be used for auto-load on program boot.
+     * Since importFrom in JsonIOStrategy now exists this method will mainly be used for auto-load on program boot.
      */
     public static ContactBook autoLoadFromJson(String fileName) {
 
@@ -86,19 +86,9 @@ public class JsonIOStrategy implements IOStrategy {
 
             try {
 
-                if (file.exists() && !fileName.equals("auto-save")) {
-                    System.out.println(file.getName() + " exists. For your convenience we will save the file as temp.json instead");
+                mapper.writeValue(new File(path), contactBook);
+                System.out.println("File saved at: " + path);
 
-                    String altPath = System.getProperty("user.home")
-                            + File.separator + "temp.json";
-
-                    mapper.writeValue(new File(altPath), contactBook);
-                    System.out.println("File saved");
-
-                } else {
-                    mapper.writeValue(new File(path), contactBook);
-                    System.out.println("File saved at: " + path);
-                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -117,41 +107,38 @@ public class JsonIOStrategy implements IOStrategy {
      *  Then the user is prompted to choose if they want to save a contact or the whole book.
      *  The object is then serialized to Json data and saved in the file location.
      * @param fileFromFileChooser
+     * @param choice
      */
 
 
     @Override
-    public void exportTo(File fileFromFileChooser) {
+    public void exportTo(File fileFromFileChooser, int choice) {
 
-        if (handler.contactBook != null && handler.contactBook.getContactList().size()!=0) {
+        if (handler.contactBook != null && !handler.contactBook.getContactList().isEmpty()) {
 
             ObjectMapper objectMapper = new ObjectMapper();
-
-            System.out.println("Do you want to save a contact (1) or the contactBook (2)?");
-            int result = handler.input.verifyInt(1, 2);
-
             Contact contact = null;
 
 
-            if (result == 1) {
+            if (choice == 1) {
                 ContactFinder contactFinder = new ContactFinder(handler);
-                if (handler.contactBook.getContactList().size() > 1) {
-                    System.out.println("Which contact would you like to export?");
-                }
+
+                System.out.println("Which contact would you like to export?");
+
                 contact = contactFinder.selectContact(handler.contactBook.getContactList());
 
             }
 
             File file = fileFromFileChooser;
 
-            if (file != null && result == 1) {
+            if (file != null && choice == 1) {
 
                 try {
                     objectMapper.writeValue(file, contact);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else if (file != null && result == 2) {
+            } else if (file != null && choice == 2) {
 
                 try {
                     objectMapper.writeValue(file, handler.contactBook);
@@ -186,7 +173,7 @@ public class JsonIOStrategy implements IOStrategy {
      * @param fileFromFileChooser
      */
 
-    public void importTo(File fileFromFileChooser) {
+    public void importFrom(File fileFromFileChooser) {
 
         if (handler.contactBook == null) {
             System.err.println("No contactBook instantiated, cannot load from file");

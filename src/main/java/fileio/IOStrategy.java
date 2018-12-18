@@ -4,8 +4,8 @@ import java.io.File;
 
 public interface IOStrategy {
 
-    void exportTo(File fileFromFileChooser);
+    void exportTo(File fileFromFileChooser, int choice);
 
-    void importTo(File fileFromFileChooser);
+    void importFrom(File fileFromFileChooser);
 
 }
