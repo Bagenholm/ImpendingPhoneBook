@@ -1,4 +1,4 @@
-****__****__Welcome to Impending Phone Book(tm)(c)(r)(inc)(?)!
+Welcome to Impending Phone Book(tm)(c)(r)(inc)(?)!
 
 About the program!
 
