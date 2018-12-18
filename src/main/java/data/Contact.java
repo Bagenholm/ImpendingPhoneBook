@@ -76,9 +76,7 @@ public class Contact {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
+    public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate;}
 
     public String getNote() {
         return note;

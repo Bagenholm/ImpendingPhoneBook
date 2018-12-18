@@ -52,11 +52,18 @@ public class InputManager {
 
 
     /** Takes a string in the format YYYYMMDD or YYMMDD and converts it to LocalDate, through verifyDateFormat().
-     * If YY in YYMMDD is lower than 19, makes it 20YY, else 19YY. */
+     * If YY in YYMMDD is lower than 19, makes it 20YY, else 19YY. Also checks that birthday is not after today */
     public LocalDate verifyDate() {
         System.out.println("Please enter date in the format YYYYMMDD or YYMMDD");
         String input = takeInput();
-        return checkDateFormat(input);
+        LocalDate localDate = checkDateFormat(input);
+        if (localDate.isAfter(LocalDate.now())) {
+            System.out.println("Time travelers not accepted, input birthday again");
+            return verifyDate();
+        }
+        else {
+            return localDate;
+        }
     }
 
     public LocalDate checkDateFormat(String input) {
