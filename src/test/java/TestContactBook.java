@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +15,12 @@ class TestContactBook {
     void testThatContactBookThrowsExceptionWhenInputtingNull() {
         assertThrows(IllegalArgumentException.class, () -> new ContactBook(null));
     }
+    @Test
+    void testCopyConstructorSetsContactList() {
+        List<Contact> list = new ArrayList<>();
+      ContactBook contactBook = new ContactBook(list);
+      assertEquals(list, contactBook.getContactList());
+    }
 
     @Test
     void testThatAddMethodDoesNotAcceptNullAsInput() {
@@ -21,6 +29,7 @@ class TestContactBook {
         contactBook.add(null);
         assertEquals(0,contactBook.getContactList().size());
     }
+
 
     @Test
     void testThatSizeMethodReturns0sizeWhenContactListIsNull () {

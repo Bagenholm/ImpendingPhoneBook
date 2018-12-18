@@ -8,6 +8,9 @@ import java.util.Objects;
 
 public class ContactBook {
 
+    /**
+     * Class for storing the contact. Stored in contactList.
+     */
 
     private List<Contact> contactList;
 

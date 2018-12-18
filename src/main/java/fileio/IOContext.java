@@ -4,6 +4,13 @@ import util.InputManager;
 
 public class IOContext {
 
+    /**
+     * This class sets the IO strategy for saving and loading of files. Using Strategy pattern for this enables
+     * us to just run the same export() method but yielding different results if different strategies are set. While this would have been a good idea if implemented
+     * when saving to many different file formats it is not that useful when we are only saving to json. Could be useful if we add more file formats to the program.
+     * Uses factory model in constructor for simplicity.
+     */
+
     private IOStrategy importIOStrategy;
     private IOStrategy exportIOStrategy;
 
