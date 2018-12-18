@@ -66,7 +66,6 @@ public class ASCIIConverter {
         } else {
             str = '@';
         }
-
         return str;
     }
 }

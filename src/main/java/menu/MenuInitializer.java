@@ -66,8 +66,8 @@ public class MenuInitializer {
 
         //Remove menu
         removeMenu.add("Back to main menu.", () -> mainMenu.run());
-        removeMenu.add("Remove contact" + c.getName(), () -> handler.contactBook.getContactList().remove(c
-        ));
+        removeMenu.add("Remove contact.", () -> { handler.contactBook.getContactList().remove(c
+        ); c = new Contact(); } );
 
         //Quit Menu
         quitMenu.add("Back to main menu.", () -> mainMenu.run());

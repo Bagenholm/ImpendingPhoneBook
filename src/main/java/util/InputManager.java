@@ -18,10 +18,8 @@ public class InputManager {
     }
 
     public int verifyIntFormat(String input) {
-        int i;
         if( input.length() > 0 && input.matches("[0-9]*") ) {
-            i = Integer.parseInt(input);
-            return i;
+            return Integer.parseInt(input);
         } else {
             return verifyInt();
         }
@@ -35,14 +33,16 @@ public class InputManager {
     }
 
     public int verifyIntFormat(int min, int max, String input) {
-        int i = Integer.parseInt(input);
-        if( input.length() > 0 && input.matches("[0-9]*") ) {
-            if (i >= min && i <= max)
-                return i;
-            else return verifyInt(min, max);
-        } else {
-            return verifyInt(min, max);
-        }
+        if (input.length() > 0) {
+            int i = Integer.parseInt(input);
+            if( input.matches("[0-9]*") ) {
+                if (i >= min && i <= max)
+                    return i;
+                else return verifyInt(min, max);
+            } else {
+                return verifyInt(min, max);
+            }
+        } else return verifyInt(min, max);
     }
 
     public String verifyEmail(){
@@ -50,7 +50,7 @@ public class InputManager {
         if(email.contains("@")){
             return email;
         }else{
-            System.out.println("Please enter a valid email!");
+            System.out.println("Please enter a valid email.");
             return verifyEmail();
         }
     }
@@ -68,7 +68,7 @@ public class InputManager {
         String input = takeInput();
         LocalDate localDate = checkDateFormat(input);
         if (localDate.isAfter(LocalDate.now())) {
-            System.out.println("Time travelers not accepted, input birthday again");
+            System.out.println("Time travelers not accepted, input birthdate again");
             return verifyDate();
         }
         else {
@@ -96,7 +96,6 @@ public class InputManager {
                 day = input.substring(4, 6);
                 return LocalDate.parse(year + "-" + month + "-" + day);
             }
-
         } else {
             return verifyDate();
         }

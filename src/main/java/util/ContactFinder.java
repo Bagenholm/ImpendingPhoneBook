@@ -21,7 +21,6 @@ public class ContactFinder {
             for (int i = 0; i < list.size() ; i++) {
                 System.out.println("[" + i + "]" + list.get(i).toString());
             }
-            System.out.println("Please choose an index");
             return list.get(handler.input.verifyInt(0,list.size()));
         }
     }
