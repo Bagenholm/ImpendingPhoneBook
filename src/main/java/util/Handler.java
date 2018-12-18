@@ -33,6 +33,7 @@ public class Handler {
 
     public ContactBook autoLoad() {
         if (JsonIOStrategy.autoLoadFromJson("auto-save") != null) {
+            System.out.println("auto-save loaded");
             return JsonIOStrategy.autoLoadFromJson("auto-save");
         } else {
             return new ContactBook();

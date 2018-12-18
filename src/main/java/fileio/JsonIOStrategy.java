@@ -45,7 +45,6 @@ public class JsonIOStrategy implements IOStrategy {
         ContactBook deSerializedContactBook = new ContactBook();
 
         if (file.exists()) {
-            System.out.println(file.getName() + " loaded!");
 
             try {
                 deSerializedContactBook = mapper.readValue(file, ContactBook.class);
