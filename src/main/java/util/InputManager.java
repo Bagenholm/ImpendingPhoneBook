@@ -45,6 +45,16 @@ public class InputManager {
         }
     }
 
+    public String verifyEmail(){
+        String email = takeInput();
+        if(email.contains("@")){
+            return email;
+        }else{
+            System.out.println("Please enter a valid email!");
+            return verifyEmail();
+        }
+    }
+
     /** For consistency, letting all input go through InputManager. */
     public String verifyString() {
         return takeInput();

@@ -57,7 +57,7 @@ public class MenuInitializer {
         editMenu.add("Edit contact name.", () -> c.setName(input().verifyString()));
         editMenu.add("Edit contact phone number.", () -> c.setNumber(input().verifyString()));
         editMenu.add("Edit contact adress.", () -> c.setAddress(input().verifyString()));
-        editMenu.add("Edit contact email.", () -> c.setEmail(input().verifyString()));
+        editMenu.add("Edit contact email.", () -> c.setEmail(input().verifyEmail()));
         editMenu.add("Edit contact note.", () -> c.setNote(input().verifyString()));
         editMenu.add("Edit contact birthdate.", () -> c.setBirthDate(input().verifyDate()));
         editMenu.add("Print current contact.", () -> printCurrentContact());
