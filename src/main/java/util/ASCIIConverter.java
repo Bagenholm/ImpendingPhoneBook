@@ -8,15 +8,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ASCIIConverter {
-    boolean negative;
-
-    public ASCIIConverter() {
-        this(false);
-    }
-
-    public ASCIIConverter(boolean negative) {
-        this.negative = negative;
-    }
 
     public BufferedImage makeImage() {
         try {
@@ -40,7 +31,7 @@ public class ASCIIConverter {
             for (int x = 0; x < image.getWidth(); x = x + 2) {
                 Color pixelColor = new Color(image.getRGB(x, y));
                 double gValue = (double) pixelColor.getRed() * 0.2989 + (double) pixelColor.getBlue() * 0.5870 + (double) pixelColor.getGreen() * 0.1140;
-                char s = negative ? returnStrNeg(gValue) : returnStrPos(gValue);
+                char s = returnStrPos(gValue);
                 sb.append(s);
             }
         }
@@ -74,37 +65,6 @@ public class ASCIIConverter {
             str = '#';
         } else {
             str = '@';
-        }
-
-        return str;
-    }
-
-    /**
-     * @param g grayscale value
-     * @return char matching "light value".
-     */
-
-    private char returnStrNeg(double g) {
-        char str;
-
-        if (g >= 230.0) {
-            str = '@';
-        } else if (g >= 200.0) {
-            str = '#';
-        } else if (g >= 180.0) {
-            str = '8';
-        } else if (g >= 160.0) {
-            str = '&';
-        } else if (g >= 130.0) {
-            str = 'o';
-        } else if (g >= 100.0) {
-            str = ':';
-        } else if (g >= 70.0) {
-            str = '*';
-        } else if (g >= 50.0) {
-            str = '.';
-        } else {
-            str = ' ';
         }
 
         return str;

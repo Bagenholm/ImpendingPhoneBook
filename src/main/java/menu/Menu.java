@@ -27,7 +27,6 @@ public class Menu {
     }
 
     public int choice(){
-        System.out.println("Please choose your action");
         return handler.input.verifyInt(1, menuChoice.size());
     }
 
