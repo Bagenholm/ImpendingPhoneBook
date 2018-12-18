@@ -17,7 +17,9 @@ public class ContactFinder {
     public Contact selectContact(List<Contact> list){
         if(list.size() == 1){
             return list.get(0);
-        }else{
+        } else if (list.size() == 0) {
+          return new Contact();
+        } else{
             for (int i = 0; i < list.size() ; i++) {
                 System.out.println("[" + i + "]" + list.get(i).toString());
             }
