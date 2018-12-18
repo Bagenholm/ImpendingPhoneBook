@@ -14,6 +14,7 @@ public class MenuInitializer {
 
     Handler handler;
     Contact c = new Contact();
+    public Menu mainMenu;
 
     public MenuInitializer(Handler handler) {
         this.handler = handler;
@@ -21,7 +22,7 @@ public class MenuInitializer {
 
     public void initalizeMenus() {
 
-        Menu mainMenu = new Menu(handler);
+        mainMenu = new Menu(handler);
         Menu saveMenu = new Menu(handler);
         Menu searchMenu = new Menu(handler);
         Menu editMenu = new Menu(handler);
@@ -29,9 +30,9 @@ public class MenuInitializer {
         Menu removeMenu = new Menu(handler);
 
         //Main Menu
+        mainMenu.add("Print current contact.", () -> printCurrentContact());
         mainMenu.add("Search for contact.", () -> searchMenu.run());
         mainMenu.add("Create contact.", () -> { addContact(); editMenu.runEntireMenu(); } );
-        mainMenu.add("Print current contact.", () -> printCurrentContact());
         mainMenu.add("Edit contact.", () -> editMenu.run());
         mainMenu.add("Remove contact.", () -> removeMenu.run());
         mainMenu.add("Print image.", () -> System.out.println(c.getImage()));

@@ -28,21 +28,21 @@ public class InputManager {
     /** Takes input and returns if it's a digit between 0 and the max value, through verifyInt(int, int, String).
      * Used to not get NullPointerException when accessing arraylists*/
     public int verifyInt(int min, int max) {
-        System.out.println("Please enter a digit.");
+        System.out.println("Please enter a digit. Leave blank to go back to main menu.");
         return verifyIntFormat(min, max, takeInput());
     }
 
     public int verifyIntFormat(int min, int max, String input) {
         if (input.length() > 0) {
-            int i = Integer.parseInt(input);
-            if( input.matches("[0-9]*") ) {
+            if(input.matches("[0-9]*") ) {
+                int i = Integer.parseInt(input);
                 if (i >= min && i <= max)
                     return i;
                 else return verifyInt(min, max);
             } else {
                 return verifyInt(min, max);
             }
-        } else return verifyInt(min, max);
+        } else return 1;
     }
 
     public String verifyEmail(){
