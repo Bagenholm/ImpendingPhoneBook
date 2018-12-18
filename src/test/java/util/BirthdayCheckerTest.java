@@ -55,7 +55,7 @@ class BirthdayCheckerTest {
 
         Period p = Period.between(LocalDate.now(), nextBDay);
         long p2 = ChronoUnit.DAYS.between(LocalDate.now(), nextBDay);
-        BirthdayChecker.birthdayNotifier(handler, 365);
+        BirthdayChecker.birthdayNotifier(handler, 365, LocalDate.now());
 
 
         assertEquals(birthDayString+ "There are " + p.getMonths() + " months, and " +
@@ -83,7 +83,7 @@ class BirthdayCheckerTest {
 
         Period p = Period.between(testDateNow, nextBDay);
         long p2 = ChronoUnit.DAYS.between(testDateNow, nextBDay);
-        BirthdayChecker.birthdayNotifier(handler, 15);
+        BirthdayChecker.birthdayNotifier(handler, 15, LocalDate.of(2018,05,29));
 
 
         assertEquals("", outContent.toString());
@@ -95,7 +95,7 @@ class BirthdayCheckerTest {
     @Test
     void throwsExceptionIfHandlerNotInstantiated() {
 
-       assertThrows(IllegalArgumentException.class, ()-> BirthdayChecker.birthdayNotifier(null, 50));
+       assertThrows(IllegalArgumentException.class, ()-> BirthdayChecker.birthdayNotifier(null, 50, LocalDate.now()));
 
 
     }
@@ -103,7 +103,7 @@ class BirthdayCheckerTest {
     @Test
     void giveEmptyContactListDoesNotThrowException() {
 
-        BirthdayChecker.birthdayNotifier(new Handler(), 30);
+        BirthdayChecker.birthdayNotifier(new Handler(), 30, LocalDate.now());
         assertEquals("", outContent.toString());
 
     }

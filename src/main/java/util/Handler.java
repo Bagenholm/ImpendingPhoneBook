@@ -4,6 +4,8 @@ import data.ContactBook;
 import fileio.*;
 import menu.MenuInitializer;
 
+import java.time.LocalDate;
+
 public class Handler {
 
     //:TODO kolla new här (konstruktor?)
@@ -12,16 +14,16 @@ public class Handler {
     public ContactFinder contactFinder = new ContactFinder(this);
     public ASCIIConverter ascii = new ASCIIConverter();
     public MenuInitializer menuInitializer = new MenuInitializer(this);
-    IOContext io = new IOContext();
+    IOContext io = IOContext.createIOContext();
 
     public void init() {
         contactBook = autoLoad();
-        BirthdayChecker.birthdayNotifier(this, 30);
+        BirthdayChecker.birthdayNotifier(this, 30, LocalDate.now());
         menuInitializer.initalizeMenus();
     }
 
     public void save() {
-        FileWriter.writeToJson("auto-save", contactBook);
+        JsonIOStrategy.autoSaveToJson("auto-save", contactBook);
     }
 
     public void saveNew() {
@@ -30,8 +32,8 @@ public class Handler {
     }
 
     public ContactBook autoLoad() {
-        if (FileReader.readFromJson("auto-save") != null) {
-            return FileReader.readFromJson("auto-save");
+        if (JsonIOStrategy.autoLoadFromJson("auto-save") != null) {
+            return JsonIOStrategy.autoLoadFromJson("auto-save");
         } else {
             return new ContactBook();
         }

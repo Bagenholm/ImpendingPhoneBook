@@ -9,21 +9,21 @@ class IOContextTest {
     @Test
     void setImportIOStrategyToNull() {
 
-        IOContext ioContext = new IOContext();
+        IOContext ioContext = IOContext.createIOContext();
         assertThrows(IllegalArgumentException.class, () -> ioContext.setImportIOStrategy(null));
     }
 
     @Test
     void setExportIOStrategyToNull() {
 
-        IOContext ioContext = new IOContext();
+        IOContext ioContext = IOContext.createIOContext();
         assertThrows(IllegalArgumentException.class, () -> ioContext.setExportIOStrategy(null));
     }
 
     @Test
     void NoExceptionWhenChoosingExportToWithoutSelectingStrategy() {
 
-        IOContext ioContext = new IOContext();
+        IOContext ioContext = IOContext.createIOContext();
         ioContext.exportTo();
         assertFalse(false);
     }
@@ -31,9 +31,11 @@ class IOContextTest {
     @Test
     void NoExceptionWhenChoosingImportToWithoutSelectingStrategy() {
 
-        IOContext ioContext = new IOContext();
+        IOContext ioContext = IOContext.createIOContext();
         ioContext.importTo();
         assertFalse(false);
 
     }
+
+
 }
