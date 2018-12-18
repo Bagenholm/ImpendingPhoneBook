@@ -16,6 +16,7 @@ public class ContactFinder {
 
     public Contact selectContact(List<Contact> list){
         if(list.size() == 1){
+            System.out.println("Found one match: " + list.get(0).toString());
             return list.get(0);
         } else if (list.size() == 0) {
           return new Contact();
