@@ -79,12 +79,13 @@ public class InputManager {
     public LocalDate checkDateFormat(String input) {
         String year, month, day;
 
-        if (input.length() == 8 && input.matches("([1]|[2]){1}([9|0]){1}[0-9]{2}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}")) {
+        //Regex: First takes 19 or 20, then month up to 12, day up to 31. Note: possible to do 31st of a month with fewer days. Fix.
+        if (input.length() == 8 && input.matches("([1]|[2]){1}([9|0]){1}[0-9]{2}([0]{1}[0-9]{1}|[1]{1}[0-2]{1}){1}([0-2]{1}[0-9]{1}|[3]{1}[0-1]{1})")) {
             year = input.substring(0, 4);
             month = input.substring(4, 6);
             day = input.substring(6, 8);
             return LocalDate.parse(year + "-" + month + "-" + day);
-        } else if (input.length() == 6 && input.matches("[0-9]{2}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}")) {
+        } else if (input.length() == 6 && input.matches("[0-9]{2}([0]{1}[0-9]{1}|[1]{1}[0-2]{1}){1}([0-2]{1}[0-9]{1}|[3]{1}[0-1]{1})")) {
             if (Integer.parseInt(input.substring(0, 2)) > 19 ) {
                 year = "19"+input.substring(0, 2);
                 month = input.substring(2, 4);
