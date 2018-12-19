@@ -5,14 +5,19 @@ About the program!
 Impending Phone Book is a Contact manager program with CRUD functionality. It can also convert png images to ASCII and will let you know when a contact's birthdate is.. impending.
 
 To start the program:
-	1. Clone the github repo https://github.com/Bagenholm/ImpendingPhoneBook
-	2. We assume that you have java and maven installed. (Otherwise download from https://maven.apache.org/ and https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-	3. If downloaded as zip, extract. 
-	4. Open bash and locate the folder.
-	5. Use the command 
-		mvn clean compile assembly:single
-	6. Use the command
-		java -jar target/ImpendingPhoneBook-1.0-SNAPSHOT-jar-with-dependencies.jar
+1. Clone the github repo https://github.com/Bagenholm/ImpendingPhoneBook
+
+2. We assume that you have java and maven installed. (Otherwise download from https://maven.apache.org/ and https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+3. If downloaded as zip, extract. 
+
+4. Open bash and locate the folder.
+
+5. Use the command 
+	mvn clean compile assembly:single
+
+6. Use the command
+	java -jar target/ImpendingPhoneBook-1.0-SNAPSHOT-jar-with-dependencies.jar
 		
 
 Using the program:
