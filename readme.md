@@ -6,18 +6,19 @@ Impending Phone Book is a Contact manager program with CRUD functionality. It ca
 
 To start the program:
 	1. Clone the github repo https://github.com/Bagenholm/ImpendingPhoneBook
-	2. If downloaded as zip, extract. 
-	3. Open bash and locate the folder.
-	4. Use the command 
+	2. We assume that you have java and maven installed. (Otherwise download from https://maven.apache.org/ and https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+	3. If downloaded as zip, extract. 
+	4. Open bash and locate the folder.
+	5. Use the command 
 		mvn clean compile assembly:single
-	5. Use the command
+	6. Use the command
 		java -jar target/ImpendingPhoneBook-1.0-SNAPSHOT-jar-with-dependencies.jar
 		
 
 Using the program:
 If you've used Impending Phone Book(tm)(c)(r)(inc)(?) before it will auto-load your save file if it's located in the user home folder. 
 If you don't have an existing save file, start by creating contacts by using the Create Contact menu. 
-You will be prompted to input name, adress, birthdate, email and a personal note. 
+You will be prompted to input name, address, birth date, email and a personal note. 
 	
 To find a contact, choose search for contact from the main menu. You can search by any of the fields or all of the fields. 
 If you choose a field and press enter before typing a search string, it will list all contacts.
